@@ -1,0 +1,433 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#0F1117;--surface:#1A1D27;--surfaceAlt:#22263A;--border:#2C3050;
+--accent:#F97316;--accentSoft:#FED7AA;--text:#F1F5F9;--textSub:#94A3B8;
+--muted:#475569;--success:#22C55E;--warning:#F59E0B;--error:#EF4444;--star:#FBBF24;
+}
+.wrap{display:flex;justify-content:center;padding:16px 0 8px}
+.phone{width:375px;height:780px;background:var(--bg);border-radius:44px;border:6px solid #1e1e2e;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 0 0 1px #333}
+.sbar{background:#0a0c13;padding:10px 20px 6px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.sbar-t{font-size:12px;color:#fff;font-weight:500}
+.hdr{background:var(--surface);padding:12px 16px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-shrink:0}
+.hdr-title{font-size:18px;font-weight:700;color:var(--text)}
+.scr{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--bg);scrollbar-width:none}
+.scr::-webkit-scrollbar{display:none}
+.tabbar{background:var(--surface);border-top:1px solid var(--border);display:flex;padding:8px 0 14px;flex-shrink:0}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:opacity .15s}
+.tab svg{width:22px;height:22px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .15s}
+.tab.on svg{stroke:var(--accent)}
+.tab-lbl{font-size:10px;font-weight:600;color:var(--muted);transition:color .15s}
+.tab.on .tab-lbl{color:var(--accent)}
+.pad{padding:14px}
+.greeting{font-size:22px;font-weight:900;color:var(--text)}
+.subgreet{font-size:13px;color:var(--textSub);margin-top:2px}
+.avatar-circle{width:42px;height:42px;border-radius:50%;background:#F9731622;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pill-row{display:flex;gap:8px;overflow-x:auto;margin:12px -14px;padding:0 14px 4px;scrollbar-width:none}
+.pill-row::-webkit-scrollbar{display:none}
+.pill{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px;font-size:12px;color:var(--text);white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.pill svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sec-title{font-size:16px;font-weight:700;color:var(--text)}
+.see-all{font-size:12px;font-weight:600;color:var(--accent);cursor:pointer}
+.hscroll{display:flex;gap:12px;overflow-x:auto;margin:0 -14px;padding:0 14px 4px;scrollbar-width:none}
+.hscroll::-webkit-scrollbar{display:none}
+.tcard-h{width:200px;background:var(--surface);border-radius:12px;overflow:hidden;cursor:pointer;flex-shrink:0;border:1px solid var(--border)}
+.tcard-h img{width:100%;height:110px;object-fit:cover;display:block}
+.tcard-h-body{padding:8px}
+.tcard-h-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.4}
+.tcard-h-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--textSub)}
+.star-row{display:flex;align-items:center;gap:3px;color:var(--star);font-size:11px;font-weight:600}
+.badge{display:inline-flex;align-items:center;background:#F9731622;color:var(--accent);font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px}
+.badge-gray{background:#ffffff12;color:var(--textSub)}
+.badge-green{background:#22C55E22;color:var(--success)}
+.badge-amber{background:#F59E0B22;color:var(--warning)}
+.badge-red{background:#EF444422;color:var(--error)}
+.tech-row{background:var(--surface);border-radius:12px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--border)}
+.tech-av{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.tech-name{font-size:13px;font-weight:700;color:var(--text)}
+.tech-spec{font-size:11px;color:var(--textSub);margin-top:1px}
+.tech-rate{font-size:13px;font-weight:700;color:var(--accent)}
+.tech-dist{font-size:11px;color:var(--muted)}
+.status-dot{display:flex;align-items:center;gap:4px;margin-top:3px}
+.dot{width:7px;height:7px;border-radius:50%}
+.dot-avail{background:var(--success)}
+.dot-busy{background:var(--warning)}
+.dot-un{background:var(--error)}
+.dot-lbl{font-size:11px;font-weight:500}
+.recent-row{background:var(--surface);border-radius:12px;padding:10px;margin-bottom:8px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--border)}
+.recent-thumb{width:72px;height:50px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.recent-title{font-size:12px;font-weight:600;color:var(--text);line-height:1.3}
+.sec{margin-bottom:18px}
+.tcard-v{background:var(--surface);border-radius:14px;overflow:hidden;margin-bottom:12px;cursor:pointer;border:1px solid var(--border)}
+.tcard-v img{width:100%;height:180px;object-fit:cover;display:block}
+.tcard-v-body{padding:12px}
+.tcard-v-title{font-size:15px;font-weight:700;color:var(--text);margin:6px 0 5px;line-height:1.3}
+.tcard-v-desc{font-size:12px;color:var(--textSub);line-height:1.6;margin-bottom:8px}
+.tcard-v-footer{display:flex;align-items:center;gap:10px}
+.author{font-size:11px;color:var(--textSub);flex:1}
+.views{font-size:11px;color:var(--muted)}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.play-btn{width:48px;height:48px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center}
+.searchbar{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:9px 14px;margin-bottom:10px}
+.searchbar input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-size:13px}
+.searchbar input::placeholder{color:var(--muted)}
+.filter-row{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px;scrollbar-width:none}
+.filter-row::-webkit-scrollbar{display:none}
+.ftab{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;color:var(--textSub);cursor:pointer;white-space:nowrap;font-weight:500}
+.ftab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tech-card{background:var(--surface);border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid var(--border);cursor:pointer}
+.tc-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.tc-info{flex:1}
+.tc-rate{font-size:22px;font-weight:900;color:var(--accent);line-height:1}
+.tc-rate-lbl{font-size:11px;color:var(--textSub)}
+.skills-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.tc-footer{display:flex;align-items:center;gap:6px;border-top:1px solid var(--border);padding-top:8px}
+.tc-avail{font-size:11px;color:var(--textSub);flex:1}
+.profile-card{background:var(--surface);border-radius:14px;padding:14px;border:1px solid var(--border)}
+.field{margin-bottom:12px}
+.field label{font-size:12px;font-weight:600;color:var(--textSub);display:block;margin-bottom:5px}
+.field input,.field textarea{width:100%;background:var(--surfaceAlt);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:13px;outline:none;font-family:inherit;resize:none}
+.rate-row-in{display:flex;align-items:center;gap:5px}
+.dollar{font-size:22px;font-weight:900;color:var(--accent)}
+.rate-input{width:70px;font-size:26px;font-weight:900;text-align:center;background:var(--surfaceAlt);border:1px solid var(--border);border-radius:8px;padding:4px 8px;color:var(--text);outline:none}
+.per-hr{font-size:15px;color:var(--textSub)}
+.save-btn{width:100%;background:var(--accent);border:none;border-radius:12px;padding:14px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;font-family:inherit}
+.save-btn.saved{background:var(--success)}
+.divider{height:1px;background:var(--border);margin:16px 0}
+.shop-card{background:var(--surface);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:10px;border:1px solid var(--border)}
+.shop-icon{width:44px;height:44px;border-radius:10px;background:#F9731618;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.shop-name{font-size:13px;font-weight:700;color:var(--text)}
+.shop-spec{font-size:11px;color:var(--textSub);margin-top:1px}
+.shop-hrs{font-size:11px;color:var(--success)}
+.shop-dist{font-size:13px;font-weight:700;color:var(--accent);text-align:right}
+.map-placeholder{background:var(--surface);border-radius:14px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border);position:relative}
+.map-img{width:100%;height:200px;object-fit:cover;display:block;opacity:0.7}
+.map-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.map-pin{font-size:32px}
+.map-lbl{font-size:13px;color:var(--text);font-weight:600;background:rgba(0,0,0,.6);padding:4px 12px;border-radius:999px}
+.modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);z-index:50;display:flex;flex-direction:column;justify-content:flex-end}
+.modal-sheet{background:var(--surface);border-radius:20px 20px 0 0;padding:0;max-height:90%;overflow-y:auto;scrollbar-width:none}
+.modal-sheet::-webkit-scrollbar{display:none}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0}
+.modal-close{position:absolute;top:12px;right:14px;background:var(--surfaceAlt);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:16px}
+.modal-body{padding:14px}
+.modal-av-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:14px;padding-top:6px}
+.modal-av{width:72px;height:72px;border-radius:50%;background:#F9731630;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;color:var(--accent)}
+.modal-name{font-size:20px;font-weight:900;color:var(--text)}
+.modal-spec{font-size:13px;color:var(--textSub)}
+.stats-row{display:flex;background:var(--surfaceAlt);border-radius:12px;margin-bottom:14px}
+.stat-box{flex:1;text-align:center;padding:12px 4px}
+.stat-val{font-size:16px;font-weight:900;color:var(--accent)}
+.stat-lbl{font-size:10px;color:var(--textSub);margin-top:2px}
+.sub-head{font-size:14px;font-weight:700;color:var(--text);margin:12px 0 6px}
+.bio-txt{font-size:13px;color:var(--textSub);line-height:1.6}
+.avail-row{display:flex;align-items:center;gap:6px;margin-bottom:14px}
+.req-btn{width:100%;background:var(--accent);border:none;border-radius:12px;padding:15px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit}
+.req-btn.sent{background:var(--success)}
+.video-placeholder{width:100%;height:200px;background:#0a0c13;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative}
+.play-circle{width:60px;height:60px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.dur-badge{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;font-size:11px;padding:3px 8px;border-radius:999px;display:flex;align-items:center;gap:4px}
+.tool-row{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.tool-txt{font-size:12px;color:var(--textSub)}
+.diff-row{display:flex;gap:6px;margin-bottom:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+</style>
+
+<div class="wrap">
+<div class="phone">
+  <div class="sbar">
+    <span class="sbar-t">9:41</span>
+    <span class="sbar-t" style="font-size:10px">●●●●  WiFi  🔋</span>
+  </div>
+  <div class="hdr" id="hdr">
+    <span class="hdr-title" id="hdr-title">Home</span>
+    <div class="avatar-circle">
+      <svg width="18" height="18" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="3.5"/><path d="M2 17c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+    </div>
+  </div>
+
+  <div class="scr" id="screen"></div>
+
+  <div class="tabbar">
+    <div class="tab on" onclick="switchTab('home',this)" id="tab-home">
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+      <span class="tab-lbl">Home</span>
+    </div>
+    <div class="tab" onclick="switchTab('tutorials',this)" id="tab-tutorials">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      <span class="tab-lbl">DIY Tutorials</span>
+    </div>
+    <div class="tab" onclick="switchTab('hiring',this)" id="tab-hiring">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <span class="tab-lbl">Find Help</span>
+    </div>
+    <div class="tab" onclick="switchTab('location',this)" id="tab-location">
+      <svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+      <span class="tab-lbl">Nearby</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const TUTORIALS=[
+  {id:'1',title:'Fix a Cracked Phone Screen at Home',desc:'Step-by-step guide to replacing a cracked screen using basic tools. Works for most Android models.',cat:'Smartphones',dur:'18 min',views:12400,rating:4.8,thumb:'https://picsum.photos/seed/tutorial1/400/220',author:'Marcus T.',tags:['screen','android','repair']},
+  {id:'2',title:'Laptop Overheating? Clean Your Fan',desc:'A dirty fan causes 80% of laptop slowdowns. Learn to safely clean it in under 20 minutes.',cat:'Laptops',dur:'22 min',views:9800,rating:4.7,thumb:'https://picsum.photos/seed/tutorial2/400/220',author:'Priya N.',tags:['laptop','cooling','cleaning']},
+  {id:'3',title:'Replace a MacBook Battery Yourself',desc:'Save $200+ by swapping your MacBook battery with a compatible unit. Includes safety tips.',cat:'Laptops',dur:'35 min',views:7600,rating:4.6,thumb:'https://picsum.photos/seed/tutorial3/400/220',author:'Jordan K.',tags:['macbook','battery','apple']},
+  {id:'4',title:'Wi-Fi Router Setup & Security Basics',desc:'Configure your router properly, change defaults, and protect your home network from intruders.',cat:'Networking',dur:'14 min',views:15200,rating:4.9,thumb:'https://picsum.photos/seed/tutorial4/400/220',author:'Sam L.',tags:['wifi','router','security']},
+  {id:'5',title:'Recover Deleted Files Without Software',desc:'Use built-in Windows and macOS tools to recover accidentally deleted documents and photos.',cat:'Software',dur:'10 min',views:22100,rating:4.5,thumb:'https://picsum.photos/seed/tutorial5/400/220',author:'Aisha R.',tags:['data recovery','windows','mac']},
+  {id:'6',title:'Upgrade Your RAM: Full Walkthrough',desc:'Double your PC performance for under $50. This guide covers desktops and compatible laptops.',cat:'Hardware',dur:'28 min',views:8300,rating:4.7,thumb:'https://picsum.photos/seed/tutorial6/400/220',author:'Dev P.',tags:['ram','upgrade','pc']},
+];
+const TECHS=[
+  {id:'t1',name:'Marcus Thompson',spec:'Phone & Tablet Repair',skills:['Screen replacement','Battery swap','Water damage'],rate:45,avail:'Mon–Fri, 9am–6pm',rating:4.9,reviews:138,dist:'0.4 mi',status:'available',bio:'Certified mobile repair tech with 7 years experience. Most fixes done same day.',avatar:'https://i.pravatar.cc/100?img=12'},
+  {id:'t2',name:'Priya Nair',spec:'Laptop & MacBook Repair',skills:['Logic board repair','SSD upgrades','OS reinstall'],rate:60,avail:'Tue–Sat, 10am–7pm',rating:4.8,reviews:92,dist:'0.9 mi',status:'available',bio:'Apple-certified technician. Specializes in MacBook Pro/Air. Remote support available.',avatar:'https://i.pravatar.cc/100?img=47'},
+  {id:'t3',name:'Jordan Kim',spec:'PC Building & Upgrades',skills:['Custom builds','RAM/GPU upgrades','Troubleshooting'],rate:50,avail:'Weekends, 11am–5pm',rating:4.7,reviews:67,dist:'1.2 mi',status:'busy',bio:'PC enthusiast and builder. Can source parts at competitive prices.',avatar:'https://i.pravatar.cc/100?img=53'},
+  {id:'t4',name:'Sam Liu',spec:'Networking & Smart Home',skills:['Router setup','Mesh networks','Smart home wiring'],rate:55,avail:'Mon, Wed, Fri, 8am–4pm',rating:4.9,reviews:204,dist:'1.8 mi',status:'available',bio:'Network engineer by day, community tech helper on weekends and off-days.',avatar:'https://i.pravatar.cc/100?img=60'},
+  {id:'t5',name:'Aisha Robinson',spec:'Software & Data Recovery',skills:['Virus removal','Data recovery','OS setup'],rate:40,avail:'Daily, 6pm–10pm',rating:4.6,reviews:51,dist:'2.1 mi',status:'available',bio:'CS grad helping neighbors with software issues. Evening slots only.',avatar:'https://i.pravatar.cc/100?img=29'},
+];
+const SHOPS=[
+  {name:'QuickFix Electronics',spec:'General Repair',rating:4.7,reviews:312,dist:'0.3 mi',hours:'Open · Closes 8pm',addr:'148 Flatbush Ave'},
+  {name:'Brooklyn Tech Hub',spec:'Phone & Laptop',rating:4.9,reviews:541,dist:'0.7 mi',hours:'Open · Closes 7pm',addr:'22 DeKalb Ave'},
+  {name:'iCare Repairs',spec:'Apple Products',rating:4.5,reviews:187,dist:'1.1 mi',hours:'Open · Closes 6pm',addr:'90 Fulton St'},
+  {name:'NerdForce Pro',spec:'Business IT & Home Setup',rating:4.8,reviews:220,dist:'1.6 mi',hours:'Closed · Opens 9am',addr:'5 Hanson Pl'},
+];
+const RECENTLY=[TUTORIALS[3],TUTORIALS[0],TUTORIALS[4]];
+
+function stars(r){return`<span class="star-row"><svg width="11" height="11" fill="#FBBF24" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>${r.toFixed(1)}</span>`}
+function badge(t,cls=''){return`<span class="badge ${cls}">${t}</span>`}
+function statusDot(s){const c=s==='available'?'dot-avail':s==='busy'?'dot-busy':'dot-un';const l=s==='available'?'Available':s==='busy'?'Busy':'Unavailable';return`<div class="status-dot"><div class="dot ${c}"></div><span class="dot-lbl" style="color:var(--${s==='available'?'success':s==='busy'?'warning':'error'})">${l}</span></div>`}
+
+let tutSearch='',tutCat='All',hirFilter='All',modalData=null,modalType=null,profileSaved=false,videoPlaying=false;
+
+function switchTab(t,el){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  el.classList.add('on');
+  const titles={home:'Home',tutorials:'DIY Tutorials',hiring:'Find Help',location:'Nearby'};
+  document.getElementById('hdr-title').textContent=titles[t];
+  render(t);
+}
+
+function render(t){
+  const s=document.getElementById('screen');
+  if(t==='home') s.innerHTML=renderHome();
+  else if(t==='tutorials') s.innerHTML=renderTutorials();
+  else if(t==='hiring') s.innerHTML=renderHiring();
+  else if(t==='location') s.innerHTML=renderLocation();
+  attachEvents(t);
+}
+
+function renderHome(){
+  const topTechs=[...TECHS].sort((a,b)=>b.rating-a.rating).slice(0,3);
+  const popular=[...TUTORIALS].sort((a,b)=>b.views-a.views).slice(0,4);
+  const pills=[{l:'Phone Repair',i:'📱'},{l:'Laptop Fix',i:'💻'},{l:'Networking',i:'📶'},{l:'Data Recovery',i:'💾'},{l:'Smart Home',i:'🏠'}];
+  return`<div class="pad">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-top:4px">
+    <div><div class="greeting">Good morning 👋</div><div class="subgreet">What needs fixing today?</div></div>
+    <div class="avatar-circle"><svg width="18" height="18" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="6" r="3.5"/><path d="M2 17c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div>
+  </div>
+  <div class="pill-row">${pills.map(p=>`<div class="pill" onclick="switchTabById('tutorials')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>${p.l}</div>`).join('')}</div>
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-title">Popular Tutorials</span><span class="see-all" onclick="switchTabById('tutorials')">See All</span></div>
+    <div class="hscroll">${popular.map(t=>`<div class="tcard-h" onclick="openTutModal('${t.id}')"><img src="${t.thumb}" loading="lazy"><div style="position:absolute;top:8px;left:8px">${badge(t.cat)}</div><div class="tcard-h-body"><div class="tcard-h-title">${t.title}</div><div class="tcard-h-meta">${stars(t.rating)}<span>${t.dur}</span></div></div></div>`).map((h,i)=>{const t2=popular[i];return`<div style="position:relative;flex-shrink:0"><div class="tcard-h" onclick="openTutModal('${t2.id}')"><img src="${t2.thumb}" loading="lazy" style="width:100%;height:110px;object-fit:cover"><div style="position:absolute;top:8px;left:8px">${badge(t2.cat)}</div><div class="tcard-h-body"><div class="tcard-h-title">${t2.title}</div><div class="tcard-h-meta">${stars(t2.rating)}<span>${t2.dur}</span></div></div></div></div>`}).join('')}</div>
+  </div>
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-title">Top-Rated Technicians</span><span class="see-all" onclick="switchTabById('hiring')">See All</span></div>
+    ${topTechs.map(t=>`<div class="tech-row" onclick="openTechModal('${t.id}')"><img class="tech-av" src="${t.avatar}"><div style="flex:1"><div class="tech-name">${t.name}</div><div class="tech-spec">${t.spec}</div>${statusDot(t.status)}</div><div style="text-align:right"><div>${stars(t.rating)}</div><div class="tech-rate">$${t.rate}/hr</div><div class="tech-dist">${t.dist}</div></div></div>`).join('')}
+  </div>
+  <div class="sec">
+    <div class="sec-hdr"><span class="sec-title">Recently Viewed</span></div>
+    ${RECENTLY.map(t=>`<div class="recent-row" onclick="openTutModal('${t.id}')"><img class="recent-thumb" src="${t.thumb}" loading="lazy"><div style="flex:1"><div class="recent-title">${t.title}</div><div style="display:flex;align-items:center;gap:7px;margin-top:4px">${badge(t.cat)}<span style="font-size:11px;color:var(--textSub)">${t.dur}</span></div></div><svg width="16" height="16" fill="none" stroke="var(--muted)" stroke-width="2"><polyline points="9 4 15 10 9 16"/></svg></div>`).join('')}
+  </div>
+  </div>`;
+}
+
+function renderTutorials(){
+  const cats=['All',...new Set(TUTORIALS.map(t=>t.cat))];
+  const filtered=TUTORIALS.filter(t=>{
+    const ms=t.title.toLowerCase().includes(tutSearch.toLowerCase())||t.desc.toLowerCase().includes(tutSearch.toLowerCase());
+    const mc=tutCat==='All'||t.cat===tutCat;
+    return ms&&mc;
+  });
+  return`<div class="pad">
+  <div class="searchbar"><svg width="16" height="16" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="15" y2="15"/></svg><input id="tut-search" placeholder="Search tutorials..." value="${tutSearch}" oninput="tutSearch=this.value;rerenderTut()"></div>
+  <div class="filter-row">${cats.map(c=>`<div class="ftab${tutCat===c?' on':''}" onclick="tutCat='${c}';rerenderTut()">${c}</div>`).join('')}</div>
+  <div id="tut-list">${filtered.length?filtered.map(t=>`<div class="tcard-v" onclick="openTutModal('${t.id}')"><div style="position:relative"><img src="${t.thumb}" loading="lazy" style="width:100%;height:180px;object-fit:cover"><div class="play-overlay"><div class="play-btn"><svg width="18" height="18" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div><div class="dur-badge"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="2"><circle cx="5" cy="5" r="4"/><polyline points="5 3 5 5 6.5 6.5"/></svg>${t.dur}</div></div><div class="tcard-v-body"><div style="display:flex;gap:6px;margin-bottom:4px">${badge(t.cat)}</div><div class="tcard-v-title">${t.title}</div><div class="tcard-v-desc">${t.desc}</div><div class="tcard-v-footer">${stars(t.rating)}<span class="author">by ${t.author}</span><span class="views">${(t.views/1000).toFixed(1)}k views</span></div></div></div>`).join(''):`<div style="text-align:center;padding:40px 0;color:var(--muted)"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 10px;display:block"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>No tutorials found</div>`}</div>
+  </div>`;
+}
+
+function rerenderTut(){
+  const cats=['All',...new Set(TUTORIALS.map(t=>t.cat))];
+  const filtered=TUTORIALS.filter(t=>{
+    const ms=t.title.toLowerCase().includes(tutSearch.toLowerCase())||t.desc.toLowerCase().includes(tutSearch.toLowerCase());
+    const mc=tutCat==='All'||t.cat===tutCat;
+    return ms&&mc;
+  });
+  document.querySelectorAll('.ftab').forEach((el,i)=>{el.classList.toggle('on',cats[i]===tutCat)});
+  document.getElementById('tut-list').innerHTML=filtered.length?filtered.map(t=>`<div class="tcard-v" onclick="openTutModal('${t.id}')"><div style="position:relative"><img src="${t.thumb}" loading="lazy" style="width:100%;height:180px;object-fit:cover"><div class="play-overlay"><div class="play-btn"><svg width="18" height="18" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div><div class="dur-badge">${t.dur}</div></div><div class="tcard-v-body"><div style="display:flex;gap:6px;margin-bottom:4px">${badge(t.cat)}</div><div class="tcard-v-title">${t.title}</div><div class="tcard-v-desc">${t.desc}</div><div class="tcard-v-footer">${stars(t.rating)}<span class="author">by ${t.author}</span><span class="views">${(t.views/1000).toFixed(1)}k views</span></div></div></div>`).join(''):`<div style="text-align:center;padding:40px 0;color:var(--muted)">No tutorials found</div>`;
+}
+
+function renderHiring(){
+  const filters=['All','Available','Phone','Laptop','Networking','Software'];
+  const filtered=TECHS.filter(t=>{
+    if(hirFilter==='All') return true;
+    if(hirFilter==='Available') return t.status==='available';
+    return t.spec.toLowerCase().includes(hirFilter.toLowerCase())||t.skills.some(s=>s.toLowerCase().includes(hirFilter.toLowerCase()));
+  });
+  return`<div>
+  <div style="padding:10px 14px 0"><div class="filter-row">${filters.map(f=>`<div class="ftab${hirFilter===f?' on':''}" onclick="hirFilter='${f}';rerenderHir()">${f}</div>`).join('')}</div></div>
+  <div class="pad" style="padding-top:6px">
+    <div class="sec-hdr"><span class="sec-title">${filtered.length} Technicians Found</span></div>
+    <div id="hir-list">${filtered.map(t=>`<div class="tech-card" onclick="openTechModal('${t.id}')"><div class="tc-header"><img class="tech-av" src="${t.avatar}"><div class="tc-info"><div class="tech-name">${t.name}</div><div class="tech-spec">${t.spec}</div>${statusDot(t.status)}</div><div><div class="tc-rate">$${t.rate}</div><div class="tc-rate-lbl">/hr</div></div></div><div class="skills-row">${t.skills.map(s=>`<span class="badge badge-gray">${s}</span>`).join('')}</div><div class="tc-footer"><svg width="12" height="12" fill="none" stroke="var(--muted)" stroke-width="2"><circle cx="6" cy="6" r="5"/><polyline points="6 3 6 6 7.5 7.5"/></svg><span class="tc-avail">${t.avail}</span>${stars(t.rating)}<span style="font-size:11px;color:var(--muted)">(${t.reviews})</span></div></div>`).join('')}</div>
+    <div class="divider"></div>
+    <div class="sec-hdr"><span class="sec-title">Your Provider Profile</span></div>
+    <p style="font-size:12px;color:var(--textSub);margin-bottom:12px">Offer your skills to the community. Set your rate and availability below.</p>
+    <div class="profile-card">
+      <div class="field"><label>Hourly Rate (USD)</label><div class="rate-row-in"><span class="dollar">$</span><input class="rate-input" id="my-rate" type="number" value="35" min="0" max="9999"><span class="per-hr">/hr</span></div></div>
+      <div class="field"><label>Availability</label><input id="my-avail" value="Weekends, 10am–4pm" placeholder="e.g. Mon–Fri, 5pm–9pm"></div>
+      <div class="field"><label>Skills / Specialties</label><input id="my-skills" value="Virus removal, basic setup" placeholder="e.g. Screen repair, OS setup"></div>
+      <div class="field"><label>Short Bio</label><textarea id="my-bio" rows="3" style="width:100%;background:var(--surfaceAlt);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:13px;outline:none;font-family:inherit;resize:none">CS student offering affordable help to neighbors.</textarea></div>
+      <button class="save-btn" id="save-btn" onclick="saveProfile()">
+        <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Save Profile
+      </button>
+    </div>
+  </div></div>`;
+}
+
+function rerenderHir(){
+  const filters=['All','Available','Phone','Laptop','Networking','Software'];
+  const filtered=TECHS.filter(t=>{
+    if(hirFilter==='All') return true;
+    if(hirFilter==='Available') return t.status==='available';
+    return t.spec.toLowerCase().includes(hirFilter.toLowerCase())||t.skills.some(s=>s.toLowerCase().includes(hirFilter.toLowerCase()));
+  });
+  document.querySelectorAll('#screen .ftab').forEach((el,i)=>{el.classList.toggle('on',filters[i]===hirFilter)});
+  const list=document.getElementById('hir-list');
+  if(list) list.innerHTML=filtered.map(t=>`<div class="tech-card" onclick="openTechModal('${t.id}')"><div class="tc-header"><img class="tech-av" src="${t.avatar}"><div class="tc-info"><div class="tech-name">${t.name}</div><div class="tech-spec">${t.spec}</div>${statusDot(t.status)}</div><div><div class="tc-rate">$${t.rate}</div><div class="tc-rate-lbl">/hr</div></div></div><div class="skills-row">${t.skills.map(s=>`<span class="badge badge-gray">${s}</span>`).join('')}</div><div class="tc-footer"><svg width="12" height="12" fill="none" stroke="var(--muted)" stroke-width="2"><circle cx="6" cy="6" r="5"/><polyline points="6 3 6 6 7.5 7.5"/></svg><span class="tc-avail">${t.avail}</span>${stars(t.rating)}<span style="font-size:11px;color:var(--muted)">(${t.reviews})</span></div></div>`).join('');
+  document.querySelector('#screen .sec-title').textContent=filtered.length+' Technicians Found';
+}
+
+function saveProfile(){
+  const btn=document.getElementById('save-btn');
+  btn.classList.add('saved');
+  btn.innerHTML='<svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Profile Saved!';
+  setTimeout(()=>{btn.classList.remove('saved');btn.innerHTML='<svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Profile';},3000);
+}
+
+function renderLocation(){
+  return`<div class="pad">
+  <div class="map-placeholder">
+    <img class="map-img" src="https://picsum.photos/seed/map-brooklyn/400/200" loading="lazy">
+    <div class="map-overlay">
+      <div class="map-pin">📍</div>
+      <div class="map-lbl">Brooklyn, NY · Showing nearby shops</div>
+    </div>
+  </div>
+  <div class="sec-hdr"><span class="sec-title">Repair Shops Nearby</span></div>
+  ${SHOPS.map(s=>`<div class="shop-card"><div class="shop-icon"><svg width="20" height="20" fill="none" stroke="#F97316" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div style="flex:1"><div class="shop-name">${s.name}</div><div class="shop-spec">${s.spec}</div><div style="display:flex;align-items:center;gap:7px;margin-top:3px">${stars(s.rating)}<span style="font-size:11px;color:var(--muted)">(${s.reviews})</span><span class="shop-hrs">${s.hours.includes('Open')?s.hours:'<span style="color:var(--muted)">'+s.hours+'</span>'}</span></div><div style="font-size:11px;color:var(--textSub);margin-top:2px">${s.addr}</div></div><div class="shop-dist">${s.dist}</div></div>`).join('')}
+  <div class="divider"></div>
+  <div class="sec-hdr"><span class="sec-title">Community Technicians</span></div>
+  ${TECHS.filter(t=>t.status==='available').map(t=>`<div class="tech-row" onclick="openTechModal('${t.id}')"><img class="tech-av" src="${t.avatar}"><div style="flex:1"><div class="tech-name">${t.name}</div><div class="tech-spec">${t.spec}</div>${statusDot(t.status)}</div><div style="text-align:right"><div class="tech-rate">$${t.rate}/hr</div><div class="tech-dist">${t.dist}</div></div></div>`).join('')}
+  </div>`;
+}
+
+function openTutModal(id){
+  const t=TUTORIALS.find(x=>x.id===id);
+  if(!t)return;
+  videoPlaying=false;
+  const phone=document.querySelector('.phone');
+  const modal=document.createElement('div');
+  modal.className='modal-overlay';
+  modal.id='modal-overlay';
+  modal.innerHTML=`<div class="modal-sheet"><div class="modal-handle"></div>
+    <div style="position:relative"><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="video-placeholder" id="vid-wrap">
+      <div id="vid-inner" style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div class="play-circle" onclick="playVideo('${id}')"><svg width="22" height="22" fill="#fff" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        <span style="font-size:12px;color:var(--textSub)">Tap to play</span>
+      </div>
+      <div class="dur-badge"><svg width="10" height="10" fill="none" stroke="#fff" stroke-width="2"><circle cx="5" cy="5" r="4"/><polyline points="5 3 5 5 6.5 6.5"/></svg>${t.dur}</div>
+    </div>
+    <div class="modal-body">
+      ${badge(t.cat)}
+      <div style="font-size:19px;font-weight:900;color:var(--text);margin:8px 0 8px;line-height:1.3">${t.title}</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">${stars(t.rating)}<span style="font-size:12px;color:var(--textSub)">${t.views.toLocaleString()} views</span><span style="font-size:12px;color:var(--textSub)">by ${t.author}</span></div>
+      <div style="font-size:13px;color:var(--textSub);line-height:1.6;margin-bottom:12px">${t.desc}</div>
+      <div class="tag-row">${t.tags.map(tg=>`<span class="badge badge-gray">#${tg}</span>`).join('')}</div>
+      <div class="sub-head">What You'll Need</div>
+      ${['Phillips screwdriver','Plastic spudger','Heat gun or hair dryer','Replacement part'].map(tool=>`<div class="tool-row"><svg width="14" height="14" fill="none" stroke="var(--success)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="tool-txt">${tool}</span></div>`).join('')}
+      <div class="sub-head">Difficulty</div>
+      <div class="diff-row"><span class="badge badge-green">Beginner</span><span class="badge badge-amber">Intermediate</span><span class="badge" style="background:#EF444422;color:var(--error)">Advanced</span></div>
+    </div>
+  </div>`;
+  phone.appendChild(modal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+}
+
+function playVideo(id){
+  document.getElementById('vid-inner').innerHTML=`<svg width="50" height="50" fill="none" stroke="#F97316" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon fill="#F97316" points="10 8 16 12 10 16 10 8"/></svg><span style="font-size:13px;color:var(--text);font-weight:600">Playing...</span>`;
+}
+
+function openTechModal(id){
+  const t=TECHS.find(x=>x.id===id);
+  if(!t)return;
+  let reqSent=false;
+  const phone=document.querySelector('.phone');
+  const modal=document.createElement('div');
+  modal.className='modal-overlay';
+  modal.id='modal-overlay';
+  modal.innerHTML=`<div class="modal-sheet"><div class="modal-handle"></div>
+    <div style="position:relative"><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="modal-body">
+      <div class="modal-av-wrap">
+        <div class="modal-av">${t.name.charAt(0)}</div>
+        <div class="modal-name">${t.name}</div>
+        <div class="modal-spec">${t.spec}</div>
+        ${statusDot(t.status)}
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val">$${t.rate}/hr</div><div class="stat-lbl">Rate</div></div>
+        <div class="stat-box"><div class="stat-val">${t.rating.toFixed(1)}</div><div class="stat-lbl">Rating</div></div>
+        <div class="stat-box"><div class="stat-val">${t.reviews}</div><div class="stat-lbl">Reviews</div></div>
+        <div class="stat-box"><div class="stat-val">${t.dist}</div><div class="stat-lbl">Distance</div></div>
+      </div>
+      <div class="sub-head">About</div>
+      <div class="bio-txt">${t.bio}</div>
+      <div class="sub-head">Skills</div>
+      <div class="skills-row" style="margin-bottom:12px">${t.skills.map(s=>`<span class="badge">${s}</span>`).join('')}</div>
+      <div class="sub-head">Availability</div>
+      <div class="avail-row"><svg width="14" height="14" fill="none" stroke="var(--textSub)" stroke-width="2"><circle cx="7" cy="7" r="6"/><polyline points="7 4 7 7 8.5 8.5"/></svg><span style="font-size:13px;color:var(--textSub)">${t.avail}</span></div>
+      <button class="req-btn" id="req-btn" onclick="sendReq('${t.id}')" ${t.status==='unavailable'?'disabled':''}>
+        <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Send Hire Request
+      </button>
+      ${t.status==='unavailable'?`<p style="text-align:center;font-size:12px;color:var(--muted);margin-top:8px">This technician is currently unavailable.</p>`:''}
+    </div>
+  </div>`;
+  phone.appendChild(modal);
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+}
+
+function sendReq(id){
+  const btn=document.getElementById('req-btn');
+  btn.classList.add('sent');
+  btn.innerHTML='<svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Request Sent!';
+  btn.disabled=true;
+}
+
+function closeModal(){
+  const m=document.getElementById('modal-overlay');
+  if(m) m.remove();
+}
+
+function switchTabById(t){
+  const el=document.getElementById('tab-'+t);
+  switchTab(t,el);
+}
+
+function attachEvents(t){}
+
+render('home');
+</script>
