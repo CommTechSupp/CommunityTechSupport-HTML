@@ -1,1 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FixIt — Premium Technician Marketplace</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+
+*,*::before,*::after{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+:root{
+--white:#ffffff;
+--off:#f7f9fc;
+--blue50:#eff6ff;
+--blue100:#dbeafe;
+--blue200:#bfdbfe;
+--blue300:#93c5fd;
+--blue400:#60a5fa;
+--blue500:#3b82f6;
+--blue600:#2563eb;
+--blue700:#1d4ed8;
+--slate100:#f1f5f9;
+--slate200:#e2e8f0;
+--slate300:#cbd5e1;
+--slate400:#94a3b8;
+--slate500:#64748b;
+--slate600:#475569;
+--slate700:#334155;
+--slate800:#1e293b;
+--slate900:#0f172a;
+
+--radius-sm:10px;
+--radius-md:16px;
+--radius-lg:24px;
+--radius-xl:32px;
+--radius-full:9999px;
+
+--shadow-sm:0 2px 8px rgba(0,0,0,.05);
+--shadow-md:0 10px 30px rgba(37,99,235,.08);
+--shadow-lg:0 18px 50px rgba(37,99,235,.12);
+
+--grad-primary:linear-gradient(135deg,#3b82f6,#2563eb,#1d4ed8);
+--grad-hero:linear-gradient(160deg,#eff6ff 0%,#dbeafe 35%,#ffffff 100%);
+}
+
+body{
+font-family:'DM Sans',sans-serif;
+background:var(--off);
+color:var(--slate800);
+overflow-x:hidden;
+}
+
+h1,h2,h3,h4,h5{
+font-family:'Syne',sans-serif;
+}
+
+button{
+font-family:'DM Sans',sans-serif;
+}
+
+.page{
+padding-top:70px;
+min-height:100vh;
+}
+
+/* NAV */
+
+.nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 24px;
+background:rgba(255,255,255,.8);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.9);
+z-index:999;
+}
+
+.nav-logo{
+font-family:'Syne',sans-serif;
+font-size:1.7rem;
+font-weight:800;
+background:var(--grad-primary);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+cursor:pointer;
+}
+
+.nav-actions{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.nav-link{
+border:none;
+background:none;
+cursor:pointer;
+padding:10px 16px;
+border-radius:999px;
+font-size:.9rem;
+font-weight:600;
+color:var(--slate600);
+transition:.2s;
+}
+
+.nav-link:hover{
+background:var(--blue50);
+color:var(--blue600);
+}
+
+/* BUTTONS */
+
+.btn{
+border:none;
+cursor:pointer;
+border-radius:999px;
+font-weight:600;
+transition:.25s;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+}
+
+.btn-primary{
+background:var(--grad-primary);
+color:#fff;
+padding:13px 24px;
+box-shadow:0 10px 24px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+}
+
+.btn-ghost{
+background:#fff;
+border:1.5px solid var(--blue200);
+color:var(--blue600);
+padding:12px 22px;
+}
+
+.btn-sm{
+padding:10px 16px;
+font-size:.84rem;
+}
+
+.btn-danger{
+background:linear-gradient(135deg,#ef4444,#dc2626);
+color:#fff;
+padding:10px 18px;
+}
+
+/* HERO */
+
+.hero{
+background:var(--grad-hero);
+padding:90px 24px 100px;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.hero-title{
+font-size:clamp(3rem,8vw,5rem);
+line-height:1;
+font-weight:800;
+letter-spacing:-2px;
+margin-bottom:20px;
+color:var(--slate900);
+}
+
+.hero-title span{
+background:var(--grad-primary);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+max-width:650px;
+margin:auto;
+font-size:1.08rem;
+line-height:1.8;
+color:var(--slate500);
+margin-bottom:36px;
+}
+
+.hero-actions{
+display:flex;
+gap:14px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.hero-stats{
+display:flex;
+justify-content:center;
+gap:50px;
+margin-top:70px;
+flex-wrap:wrap;
+}
+
+.hero-stat{
+text-align:center;
+}
+
+.hero-stat-num{
+font-family:'Syne',sans-serif;
+font-size:2rem;
+font-weight:800;
+color:var(--blue600);
+}
+
+.hero-stat-label{
+font-size:.82rem;
+color:var(--slate400);
+margin-top:4px;
+}
+
+/* SECTION */
+
+.section{
+max-width:1200px;
+margin:auto;
+padding:60px 24px;
+}
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:26px;
+}
+
+.section-title{
+font-size:2.2rem;
+font-weight:800;
+letter-spacing:-1px;
+}
+
+.section-sub{
+margin-top:6px;
+color:var(--slate400);
+}
+
+/* SEARCH */
+
+.search-row{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:36px;
+}
+
+.search-input,
+.filter-select{
+padding:14px 18px;
+border-radius:999px;
+border:1.5px solid var(--slate200);
+background:#fff;
+font-size:.95rem;
+outline:none;
+}
+
+.search-input{
+flex:1;
+min-width:260px;
+}
+
+.filter-select{
+min-width:180px;
+}
+
+/* GRID */
+
+.tech-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+gap:22px;
+}
+
+/* CARD */
+
+.tech-card{
+background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(239,246,255,.85));
+border-radius:28px;
+padding:28px 24px;
+box-shadow:var(--shadow-md);
+border:1px solid rgba(255,255,255,.95);
+transition:.3s;
+}
+
+.tech-card:hover{
+transform:translateY(-6px);
+box-shadow:var(--shadow-lg);
+}
+
+.card-header{
+display:flex;
+gap:16px;
+align-items:flex-start;
+margin-bottom:18px;
+}
+
+.avatar{
+width:64px;
+height:64px;
+border-radius:50%;
+overflow:hidden;
+background:var(--blue100);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+font-size:1.4rem;
+color:var(--blue600);
+flex-shrink:0;
+}
+
+.avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.card-name{
+font-size:1.1rem;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.card-specialty{
+display:inline-block;
+padding:5px 12px;
+border-radius:999px;
+background:var(--blue50);
+color:var(--blue600);
+font-size:.8rem;
+font-weight:600;
+}
+
+.card-meta{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin:16px 0;
+}
+
+.meta-badge{
+padding:6px 12px;
+border-radius:999px;
+font-size:.78rem;
+background:#fff;
+border:1px solid var(--slate200);
+color:var(--slate500);
+}
+
+.card-bio{
+font-size:.88rem;
+line-height:1.7;
+color:var(--slate500);
+}
+
+.card-actions{
+display:flex;
+gap:10px;
+margin-top:18px;
+}
+
+.card-actions .btn{
+flex:1;
+}
+
+/* MODAL */
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(15,23,42,.55);
+backdrop-filter:blur(8px);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:24px;
+z-index:3000;
+}
+
+.modal{
+background:#fff;
+width:100%;
+max-width:520px;
+border-radius:34px;
+padding:36px;
+max-height:90vh;
+overflow:auto;
+box-shadow:0 30px 70px rgba(0,0,0,.15);
+}
+
+.modal-title{
+font-size:1.7rem;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.modal-sub{
+color:var(--slate400);
+margin-bottom:28px;
+}
+
+.form-group{
+margin-bottom:18px;
+}
+
+.form-label{
+display:block;
+font-size:.82rem;
+font-weight:700;
+margin-bottom:8px;
+text-transform:uppercase;
+color:var(--slate600);
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+width:100%;
+padding:14px 16px;
+border-radius:18px;
+border:1.5px solid var(--slate200);
+background:#f8fbff;
+outline:none;
+font-size:.95rem;
+}
+
+.form-textarea{
+resize:vertical;
+min-height:100px;
+}
+
+.form-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.form-actions{
+display:flex;
+gap:12px;
+margin-top:24px;
+}
+
+.form-actions .btn{
+flex:1;
+}
+
+/* UPLOAD */
+
+.upload{
+border:2px dashed var(--blue300);
+padding:24px;
+border-radius:20px;
+text-align:center;
+background:var(--blue50);
+position:relative;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.upload input{
+position:absolute;
+inset:0;
+opacity:0;
+cursor:pointer;
+}
+
+.upload img{
+width:82px;
+height:82px;
+border-radius:50%;
+object-fit:cover;
+display:block;
+margin:auto;
+}
+
+/* AUTH */
+
+.auth-page{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:100px 24px 40px;
+background:var(--grad-hero);
+}
+
+.auth-card{
+background:#fff;
+width:100%;
+max-width:460px;
+padding:42px 36px;
+border-radius:34px;
+box-shadow:var(--shadow-lg);
+}
+
+.auth-logo{
+font-size:2rem;
+font-weight:800;
+font-family:'Syne',sans-serif;
+background:var(--grad-primary);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:8px;
+}
+
+.auth-title{
+font-size:1.8rem;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.auth-sub{
+color:var(--slate400);
+margin-bottom:30px;
+}
+
+.auth-switch{
+margin-top:20px;
+text-align:center;
+font-size:.9rem;
+color:var(--slate500);
+}
+
+.auth-switch span{
+color:var(--blue600);
+font-weight:700;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+max-width:1100px;
+margin:auto;
+padding:34px 24px;
+}
+
+.dash-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.dash-title{
+font-size:2rem;
+font-weight:800;
+}
+
+.dash-grid{
+display:grid;
+grid-template-columns:340px 1fr;
+gap:24px;
+}
+
+.profile-card{
+background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(239,246,255,.85));
+border-radius:28px;
+padding:30px;
+text-align:center;
+box-shadow:var(--shadow-md);
+position:sticky;
+top:90px;
+}
+
+.profile-avatar{
+width:92px;
+height:92px;
+border-radius:50%;
+overflow:hidden;
+background:var(--blue100);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:2rem;
+font-weight:800;
+color:var(--blue600);
+margin:auto auto 16px;
+position:relative;
+cursor:pointer;
+}
+
+.profile-avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.profile-avatar input{
+position:absolute;
+inset:0;
+opacity:0;
+cursor:pointer;
+}
+
+.profile-name{
+font-size:1.3rem;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.profile-spec{
+display:inline-block;
+padding:6px 14px;
+border-radius:999px;
+background:var(--blue50);
+color:var(--blue600);
+font-size:.8rem;
+font-weight:700;
+}
+
+.dash-card{
+background:#fff;
+padding:30px;
+border-radius:28px;
+box-shadow:var(--shadow-sm);
+margin-bottom:20px;
+}
+
+.dash-card-title{
+font-size:1.05rem;
+font-weight:800;
+margin-bottom:22px;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+bottom:24px;
+right:24px;
+padding:14px 18px;
+background:#111827;
+color:#fff;
+border-radius:14px;
+z-index:9999;
+font-size:.92rem;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.form-row{
+grid-template-columns:1fr;
+}
+
+.dash-grid{
+grid-template-columns:1fr;
+}
+
+.profile-card{
+position:relative;
+top:0;
+}
+
+.hero-stats{
+gap:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+const {useState,useEffect,useCallback}=React;
+
+/* STORAGE */
+
+const LS={
+get:(k,f=null)=>{
+try{
+const v=localStorage.getItem(k);
+return v ? JSON.parse(v) : f;
+}catch{
+return f;
+}
+},
+set:(k,v)=>{
+localStorage.setItem(k,JSON.stringify(v));
+},
+rm:(k)=>{
+localStorage.removeItem(k);
+}
+};
+
+/* UTIL */
+
+const initials=name=>
+name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+
+const compressImage=(file,callback)=>{
+
+const reader=new FileReader();
+
+reader.onload=(event)=>{
+
+const img=new Image();
+
+img.onload=()=>{
+
+const canvas=document.createElement('canvas');
+
+const MAX=300;
+
+let width=img.width;
+let height=img.height;
+
+if(width>height){
+
+if(width>MAX){
+height*=MAX/width;
+width=MAX;
+}
+
+}else{
+
+if(height>MAX){
+width*=MAX/height;
+height=MAX;
+}
+
+}
+
+canvas.width=width;
+canvas.height=height;
+
+const ctx=canvas.getContext('2d');
+
+ctx.drawImage(img,0,0,width,height);
+
+const compressed=canvas.toDataURL('image/jpeg',0.7);
+
+callback(compressed);
+
+};
+
+img.src=event.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+};
+
+/* SPECIALTIES */
+
+const SPECIALTIES=[
+'Electrician',
+'Plumber',
+'HVAC Tech',
+'Carpenter',
+'Painter',
+'Welder',
+'Auto Mechanic',
+'IT Support',
+'Solar Installer',
+'Security System',
+'General Handyman',
+'Appliance Repair'
+];
+
+/* DEFAULT TECHS */
+
+const defaultTechs=[
+{
+id:'t1',
+name:'Marcus Webb',
+specialty:'Electrician',
+location:'New York, NY',
+rating:'4.9',
+jobs:'142',
+experience:'8 years',
+bio:'Licensed master electrician with expertise in residential and commercial systems.',
+availability:'available',
+linkedin:'',
+photo:''
+},
+{
+id:'t2',
+name:'Priya Nair',
+specialty:'Plumber',
+location:'Brooklyn, NY',
+rating:'4.8',
+jobs:'98',
+experience:'6 years',
+bio:'Specializing in emergency plumbing repair and installations.',
+availability:'busy',
+linkedin:'',
+photo:''
+}
+];
+
+/* TOAST */
+
+function Toast({msg,onClose}){
+
+useEffect(()=>{
+const t=setTimeout(onClose,3000);
+return()=>clearTimeout(t);
+},[]);
+
+return <div className="toast">{msg}</div>;
+
+}
+
+/* NAV */
+
+function Nav({setPage,user,onLogout}){
+
+return(
+<nav className="nav">
+
+<div className="nav-logo" onClick={()=>setPage('home')}>
+FixIt
+</div>
+
+<div className="nav-actions">
+
+<button className="nav-link" onClick={()=>setPage('home')}>
+Marketplace
+</button>
+
+{user ? (
+<>
+<button className="nav-link" onClick={()=>setPage('dashboard')}>
+Dashboard
+</button>
+
+<button className="btn btn-danger btn-sm" onClick={onLogout}>
+Logout
+</button>
+</>
+):(
+<>
+<button className="nav-link" onClick={()=>setPage('login')}>
+Login
+</button>
+
+<button className="btn btn-primary btn-sm" onClick={()=>setPage('signup')}>
+Sign Up
+</button>
+</>
+)}
+
+</div>
+
+</nav>
+);
+
+}
+
+/* AVATAR */
+
+function Avatar({photo,name,size=64}){
+
+return(
+<div className="avatar" style={{width:size,height:size}}>
+{photo
+? <img src={photo}/>
+: initials(name)}
+</div>
+);
+
+}
+
+/* TECH CARD */
+
+function TechCard({tech,onHire}){
+
+return(
+<div className="tech-card">
+
+<div className="card-header">
+
+<Avatar photo={tech.photo} name={tech.name}/>
+
+<div>
+
+<div className="card-name">
+{tech.name}
+</div>
+
+<div className="card-specialty">
+{tech.specialty}
+</div>
+
+<div style={{marginTop:8,color:'#f59e0b',fontWeight:700}}>
+★ {tech.rating}
+</div>
+
+</div>
+
+</div>
+
+<div className="card-meta">
+
+<div className="meta-badge">
+📍 {tech.location}
+</div>
+
+<div className="meta-badge">
+⚡ {tech.experience}
+</div>
+
+<div className="meta-badge">
+✓ {tech.jobs} jobs
+</div>
+
+</div>
+
+<div className="card-bio">
+{tech.bio}
+</div>
+
+<div className="card-actions">
+
+{tech.linkedin && (
+<a
+href={tech.linkedin}
+target="_blank"
+className="btn btn-ghost"
+style={{textDecoration:'none'}}
+>
+LinkedIn
+</a>
+)}
+
+<button
+className="btn btn-primary"
+onClick={()=>onHire(tech)}
+>
+Hire Now
+</button>
+
+</div>
+
+</div>
+);
+
+}
+
+/* ADD TECH MODAL */
+
+function AddTechModal({onClose,onAdd}){
+
+const [form,setForm]=useState({
+name:'',
+specialty:SPECIALTIES[0],
+location:'',
+rating:'5.0',
+jobs:'0',
+experience:'1 year',
+bio:'',
+linkedin:'',
+photo:'',
+availability:'available'
+});
+
+const set=k=>e=>
+setForm(f=>({...f,[k]:e.target.value}));
+
+const handlePhoto=e=>{
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+compressImage(file,(compressed)=>{
+setForm(f=>({...f,photo:compressed}));
+});
+
+};
+
+const submit=()=>{
+
+if(!form.name || !form.location)return;
+
+onAdd({
+...form,
+id:'t_'+Date.now()
+});
+
+onClose();
+
+};
+
+return(
+<div className="overlay">
+
+<div className="modal">
+
+<div className="modal-title">
+Add Technician
+</div>
+
+<div className="modal-sub">
+List a new technician on the marketplace
+</div>
+
+<div className="upload">
+
+<input type="file" accept="image/*" onChange={handlePhoto}/>
+
+{form.photo
+? <img src={form.photo}/>
+: <div>📷 Upload Photo</div>}
+
+</div>
+
+<div className="form-row">
+
+<div className="form-group">
+<label className="form-label">Full Name</label>
+
+<input
+className="form-input"
+value={form.name}
+onChange={set('name')}
+/>
+</div>
+
+<div className="form-group">
+<label className="form-label">Specialty</label>
+
+<select
+className="form-select"
+value={form.specialty}
+onChange={set('specialty')}
+>
+{SPECIALTIES.map(s=>
+<option key={s}>{s}</option>
+)}
+</select>
+</div>
+
+</div>
+
+<div className="form-row">
+
+<div className="form-group">
+<label className="form-label">Location</label>
+
+<input
+className="form-input"
+value={form.location}
+onChange={set('location')}
+/>
+</div>
+
+<div className="form-group">
+<label className="form-label">Experience</label>
+
+<input
+className="form-input"
+value={form.experience}
+onChange={set('experience')}
+/>
+</div>
+
+</div>
+
+<div className="form-group">
+<label className="form-label">Bio</label>
+
+<textarea
+className="form-textarea"
+value={form.bio}
+onChange={set('bio')}
+></textarea>
+</div>
+
+<div className="form-actions">
+
+<button className="btn btn-ghost" onClick={onClose}>
+Cancel
+</button>
+
+<button className="btn btn-primary" onClick={submit}>
+Add Technician
+</button>
+
+</div>
+
+</div>
+
+</div>
+);
+
+}
+
+/* HIRE MODAL */
+
+function HireModal({tech,onClose}){
+
+const [name,setName]=useState('');
+const [message,setMessage]=useState('');
+const [sent,setSent]=useState(false);
+
+if(sent){
+
+return(
+<div className="overlay">
+
+<div className="modal" style={{textAlign:'center'}}>
+
+<div style={{fontSize:'3rem',marginBottom:16}}>
+🎉
+</div>
+
+<div className="modal-title">
+Request Sent
+</div>
+
+<p style={{margin:'18px 0',color:'var(--slate500)'}}>
+Your request has been sent to {tech.name}
+</p>
+
+<button
+className="btn btn-primary"
+style={{width:'100%'}}
+onClick={onClose}
+>
+Done
+</button>
+
+</div>
+
+</div>
+);
+
+}
+
+return(
+<div className="overlay">
+
+<div className="modal">
+
+<div className="modal-title">
+Hire {tech.name}
+</div>
+
+<div className="modal-sub">
+{tech.specialty}
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Your Name
+</label>
+
+<input
+className="form-input"
+value={name}
+onChange={e=>setName(e.target.value)}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Message
+</label>
+
+<textarea
+className="form-textarea"
+value={message}
+onChange={e=>setMessage(e.target.value)}
+></textarea>
+
+</div>
+
+<div className="form-actions">
+
+<button className="btn btn-ghost" onClick={onClose}>
+Cancel
+</button>
+
+<button
+className="btn btn-primary"
+onClick={()=>setSent(true)}
+>
+Send Request
+</button>
+
+</div>
+
+</div>
+
+</div>
+);
+
+}
+
+/* HOME */
+
+function HomePage({user,setPage,showToast}){
+
+const [techs,setTechs]=useState(()=>{
+return LS.get('fixit_techs',defaultTechs);
+});
+
+const [search,setSearch]=useState('');
+const [filter,setFilter]=useState('All');
+const [showAdd,setShowAdd]=useState(false);
+const [hireTech,setHireTech]=useState(null);
+
+useEffect(()=>{
+LS.set('fixit_techs',techs);
+},[techs]);
+
+const filtered=techs.filter(t=>{
+
+const q=search.toLowerCase();
+
+const match=
+t.name.toLowerCase().includes(q) ||
+t.specialty.toLowerCase().includes(q) ||
+t.location.toLowerCase().includes(q);
+
+const matchFilter=
+filter==='All' || t.specialty===filter;
+
+return match && matchFilter;
+
+});
+
+const addTech=tech=>{
+
+setTechs(prev=>[tech,...prev]);
+
+showToast('Technician added');
+
+};
+
+return(
+<div className="page">
+
+<section className="hero">
+
+<h1 className="hero-title">
+Find Expert <br/>
+<span>Technicians</span>
+</h1>
+
+<p className="hero-sub">
+Connect with trusted professionals for repairs,
+installations and maintenance.
+</p>
+
+<div className="hero-actions">
+
+<button
+className="btn btn-primary"
+onClick={()=>setShowAdd(true)}
+>
++ Add Technician
+</button>
+
+<button
+className="btn btn-ghost"
+onClick={()=>{
+if(user){
+setPage('dashboard');
+}else{
+setPage('signup');
+}
+}}
+>
+{user ? 'Dashboard' : 'Become a Tech'}
+</button>
+
+</div>
+
+<div className="hero-stats">
+
+<div className="hero-stat">
+<div className="hero-stat-num">2.4K+</div>
+<div className="hero-stat-label">Verified Techs</div>
+</div>
+
+<div className="hero-stat">
+<div className="hero-stat-num">98%</div>
+<div className="hero-stat-label">Satisfaction</div>
+</div>
+
+<div className="hero-stat">
+<div className="hero-stat-num">4.9★</div>
+<div className="hero-stat-label">Average Rating</div>
+</div>
+
+</div>
+
+</section>
+
+<div className="section">
+
+<div className="section-head">
+
+<div>
+<div className="section-title">
+Browse Technicians
+</div>
+
+<div className="section-sub">
+{filtered.length} professionals available
+</div>
+</div>
+
+<button
+className="btn btn-primary btn-sm"
+onClick={()=>setShowAdd(true)}
+>
++ Add Tech
+</button>
+
+</div>
+
+<div className="search-row">
+
+<input
+className="search-input"
+placeholder="Search technician..."
+value={search}
+onChange={e=>setSearch(e.target.value)}
+/>
+
+<select
+className="filter-select"
+value={filter}
+onChange={e=>setFilter(e.target.value)}
+>
+
+<option value="All">All Specialties</option>
+
+{SPECIALTIES.map(s=>
+<option key={s}>{s}</option>
+)}
+
+</select>
+
+</div>
+
+<div className="tech-grid">
+
+{filtered.map(tech=>
+<TechCard
+key={tech.id}
+tech={tech}
+onHire={setHireTech}
+/>
+)}
+
+</div>
+
+</div>
+
+{showAdd && (
+<AddTechModal
+onClose={()=>setShowAdd(false)}
+onAdd={addTech}
+/>
+)}
+
+{hireTech && (
+<HireModal
+tech={hireTech}
+onClose={()=>setHireTech(null)}
+/>
+)}
+
+</div>
+);
+
+}
+
+/* LOGIN */
+
+function LoginPage({setPage,onLogin,showToast}){
+
+const [email,setEmail]=useState('');
+const [password,setPassword]=useState('');
+
+const submit=()=>{
+
+const users=LS.get('fixit_users',[]);
+
+const found=users.find(
+u=>u.email===email && u.password===password
+);
+
+if(!found){
+showToast('Invalid credentials');
+return;
+}
+
+LS.set('fixit_current_user',found);
+
+onLogin(found);
+
+};
+
+return(
+<div className="auth-page">
+
+<div className="auth-card">
+
+<div className="auth-logo">
+FixIt
+</div>
+
+<div className="auth-title">
+Welcome Back
+</div>
+
+<div className="auth-sub">
+Login to your account
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Email
+</label>
+
+<input
+className="form-input"
+type="email"
+value={email}
+onChange={e=>setEmail(e.target.value)}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Password
+</label>
+
+<input
+className="form-input"
+type="password"
+value={password}
+onChange={e=>setPassword(e.target.value)}
+/>
+
+</div>
+
+<button
+className="btn btn-primary"
+style={{width:'100%'}}
+onClick={submit}
+>
+Sign In
+</button>
+
+<div className="auth-switch">
+No account?
+<span onClick={()=>setPage('signup')}>
+ Create one
+</span>
+</div>
+
+</div>
+
+</div>
+);
+
+}
+
+/* SIGNUP */
+
+function SignupPage({setPage,onLogin,showToast}){
+
+const [form,setForm]=useState({
+name:'',
+email:'',
+location:'',
+specialty:SPECIALTIES[0],
+password:'',
+confirm:''
+});
+
+const set=k=>e=>
+setForm(f=>({...f,[k]:e.target.value}));
+
+const submit=()=>{
+
+if(
+!form.name ||
+!form.email ||
+!form.location ||
+!form.password
+){
+showToast('Please fill all fields');
+return;
+}
+
+if(form.password!==form.confirm){
+showToast('Passwords do not match');
+return;
+}
+
+const users=LS.get('fixit_users',[]);
+
+if(users.find(u=>u.email===form.email)){
+showToast('Email already exists');
+return;
+}
+
+const user={
+id:'u_'+Date.now(),
+name:form.name,
+email:form.email,
+location:form.location,
+specialty:form.specialty,
+password:form.password,
+photo:'',
+bio:'',
+experience:'1 year',
+jobs:'0',
+rating:'5.0',
+availability:'available',
+createdAt:Date.now()
+};
+
+LS.set('fixit_users',[...users,user]);
+
+const techs=LS.get('fixit_techs',defaultTechs);
+
+LS.set('fixit_techs',[user,...techs]);
+
+LS.set('fixit_current_user',user);
+
+onLogin(user);
+
+};
+
+return(
+<div className="auth-page">
+
+<div className="auth-card">
+
+<div className="auth-logo">
+FixIt
+</div>
+
+<div className="auth-title">
+Create Account
+</div>
+
+<div className="auth-sub">
+Join the marketplace
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Full Name
+</label>
+
+<input
+className="form-input"
+value={form.name}
+onChange={set('name')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Email
+</label>
+
+<input
+className="form-input"
+type="email"
+value={form.email}
+onChange={set('email')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Location
+</label>
+
+<input
+className="form-input"
+value={form.location}
+onChange={set('location')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Specialty
+</label>
+
+<select
+className="form-select"
+value={form.specialty}
+onChange={set('specialty')}
+>
+
+{SPECIALTIES.map(s=>
+<option key={s}>{s}</option>
+)}
+
+</select>
+
+</div>
+
+<div className="form-row">
+
+<div className="form-group">
+
+<label className="form-label">
+Password
+</label>
+
+<input
+className="form-input"
+type="password"
+value={form.password}
+onChange={set('password')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Confirm
+</label>
+
+<input
+className="form-input"
+type="password"
+value={form.confirm}
+onChange={set('confirm')}
+/>
+
+</div>
+
+</div>
+
+<button
+className="btn btn-primary"
+style={{width:'100%'}}
+onClick={submit}
+>
+Create Account
+</button>
+
+<div className="auth-switch">
+Already have an account?
+<span onClick={()=>setPage('login')}>
+ Sign In
+</span>
+</div>
+
+</div>
+
+</div>
+);
+
+}
+
+/* DASHBOARD */
+
+function DashboardPage({user,setUser,showToast}){
+
+const [profile,setProfile]=useState({...user});
+
+const set=k=>e=>
+setProfile(p=>({...p,[k]:e.target.value}));
+
+const handlePhoto=e=>{
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+compressImage(file,(compressed)=>{
+
+setProfile(p=>({
+...p,
+photo:compressed
+}));
+
+});
+
+};
+
+const save=()=>{
+
+const users=LS.get('fixit_users',[]);
+
+const updatedUsers=users.map(u=>
+u.id===profile.id ? {...u,...profile} : u
+);
+
+LS.set('fixit_users',updatedUsers);
+
+LS.set('fixit_current_user',profile);
+
+const techs=LS.get('fixit_techs',[]);
+
+const updatedTechs=techs.map(t=>
+t.id===profile.id ? {...t,...profile} : t
+);
+
+LS.set('fixit_techs',updatedTechs);
+
+setUser(profile);
+
+showToast('Profile saved');
+
+};
+
+return(
+<div className="page">
+
+<div className="dashboard">
+
+<div className="dash-header">
+
+<div>
+<div className="dash-title">
+Hey, {profile.name.split(' ')[0]} 👋
+</div>
+
+<div style={{marginTop:6,color:'var(--slate400)'}}>
+Manage your technician profile
+</div>
+</div>
+
+<button className="btn btn-primary" onClick={save}>
+Save Changes
+</button>
+
+</div>
+
+<div className="dash-grid">
+
+<div>
+
+<div className="profile-card">
+
+<div className="profile-avatar">
+
+{profile.photo
+? <img src={profile.photo}/>
+: initials(profile.name)}
+
+<input
+type="file"
+accept="image/*"
+onChange={handlePhoto}
+/>
+
+</div>
+
+<div className="profile-name">
+{profile.name}
+</div>
+
+<div className="profile-spec">
+{profile.specialty}
+</div>
+
+<p style={{
+marginTop:18,
+fontSize:'.9rem',
+lineHeight:1.7,
+color:'var(--slate500)'
+}}>
+{profile.bio || 'No bio yet'}
+</p>
+
+</div>
+
+</div>
+
+<div>
+
+<div className="dash-card">
+
+<div className="dash-card-title">
+Profile Information
+</div>
+
+<div className="form-row">
+
+<div className="form-group">
+
+<label className="form-label">
+Full Name
+</label>
+
+<input
+className="form-input"
+value={profile.name}
+onChange={set('name')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Specialty
+</label>
+
+<select
+className="form-select"
+value={profile.specialty}
+onChange={set('specialty')}
+>
+
+{SPECIALTIES.map(s=>
+<option key={s}>{s}</option>
+)}
+
+</select>
+
+</div>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Location
+</label>
+
+<input
+className="form-input"
+value={profile.location}
+onChange={set('location')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Experience
+</label>
+
+<input
+className="form-input"
+value={profile.experience}
+onChange={set('experience')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+LinkedIn
+</label>
+
+<input
+className="form-input"
+value={profile.linkedin || ''}
+onChange={set('linkedin')}
+/>
+
+</div>
+
+<div className="form-group">
+
+<label className="form-label">
+Bio
+</label>
+
+<textarea
+className="form-textarea"
+value={profile.bio}
+onChange={set('bio')}
+></textarea>
+
+</div>
+
+<button className="btn btn-primary" onClick={save}>
+Save All Changes
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+);
+
+}
+
+/* APP */
+
+function App(){
+
+const [page,setPage]=useState('home');
+
+const [user,setUser]=useState(
+LS.get('fixit_current_user')
+);
+
+const [toast,setToast]=useState(null);
+
+const showToast=msg=>{
+setToast(msg);
+};
+
+const logout=()=>{
+
+LS.rm('fixit_current_user');
+
+setUser(null);
+
+setPage('home');
+
+showToast('Logged out');
+
+};
+
+return(
+<>
+
+<Nav
+setPage={setPage}
+user={user}
+onLogout={logout}
+/>
+
+{page==='home' && (
+<HomePage
+user={user}
+setPage={setPage}
+showToast={showToast}
+/>
+)}
+
+{page==='login' && (
+<LoginPage
+setPage={setPage}
+onLogin={u=>{
+setUser(u);
+setPage('dashboard');
+}}
+showToast={showToast}
+/>
+)}
+
+{page==='signup' && (
+<SignupPage
+setPage={setPage}
+onLogin={u=>{
+setUser(u);
+setPage('dashboard');
+}}
+showToast={showToast}
+/>
+)}
+
+{page==='dashboard' && user && (
+<DashboardPage
+user={user}
+setUser={setUser}
+showToast={showToast}
+/>
+)}
+
+{toast && (
+<Toast
+msg={toast}
+onClose={()=>setToast(null)}
+/>
+)}
+
+</>
+);
+
+}
+
+ReactDOM.createRoot(
+document.getElementById('root')
+).render(<App/>);
+
+</script>
+
+</body>
+</html>
