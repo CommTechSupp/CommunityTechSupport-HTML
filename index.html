@@ -1,11 +1,20 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DIY Tutorials Hub</title>
+
+<title>DIY Academy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+
+/* RESET */
 
 *{
   margin:0;
@@ -13,326 +22,889 @@
   box-sizing:border-box;
 }
 
-body{
-  font-family:Arial,sans-serif;
-  background:#f1f5f9;
-  color:#0f172a;
-  min-height:100vh;
+html{
+  scroll-behavior:smooth;
 }
 
-/* HEADER */
+body{
 
-header{
+  font-family:'Inter',sans-serif;
+
+  background:#f5f9ff;
+
+  color:#0f172a;
+
+  overflow-x:hidden;
+
+}
+
+/* VARIABLES */
+
+:root{
+
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --light:#eff6ff;
+  --border:#dbeafe;
+  --text:#0f172a;
+  --muted:#64748b;
+  --white:#ffffff;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
   width:100%;
-  padding:25px;
-  font-size:32px;
-  font-weight:bold;
-  text-align:center;
+  height:82px;
+
+  position:fixed;
+  top:0;
+
+  z-index:1000;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:0 7%;
+
+  background:rgba(255,255,255,0.85);
+
+  backdrop-filter:blur(16px);
+
+  border-bottom:1px solid rgba(219,234,254,0.7);
+
+}
+
+.logo{
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  font-size:28px;
+  font-weight:800;
+
+  color:var(--primary);
+
+}
+
+.logo-icon{
+
+  width:44px;
+  height:44px;
+
+  border-radius:14px;
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--primary),
+    #60a5fa
+  );
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
   color:white;
-  background:linear-gradient(90deg,#2563eb,#60a5fa);
+
+  font-size:20px;
+
+  box-shadow:
+  0 10px 25px rgba(37,99,235,0.25);
+
+}
+
+.nav-links{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+}
+
+.nav-links a{
+
+  text-decoration:none;
+
+  color:var(--text);
+
+  font-size:15px;
+  font-weight:600;
+
+  padding:12px 18px;
+
+  border-radius:12px;
+
+  transition:0.3s;
+
+}
+
+.nav-links a:hover{
+
+  background:var(--light);
+
+  color:var(--primary);
+
+}
+
+.nav-btn{
+
+  background:var(--primary);
+
+  color:white !important;
+
+}
+
+.nav-btn:hover{
+
+  background:var(--primary-dark) !important;
+  color:white !important;
+
 }
 
 /* HERO */
 
 .hero{
+
   width:100%;
-  padding:40px 20px;
-  text-align:center;
-  color:white;
+
+  min-height:100vh;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:60px;
+
+  padding:
+  160px 7%
+  100px;
+
   background:
+  radial-gradient(
+    circle at top right,
+    rgba(96,165,250,0.18),
+    transparent 30%
+  ),
   linear-gradient(
-    135deg,
-    #1e3a8a,
-    #2563eb,
-    #60a5fa
+    180deg,
+    #ffffff,
+    #f5f9ff
   );
+
+}
+
+/* LEFT */
+
+.hero-left{
+
+  flex:1;
+
+  max-width:720px;
+
+}
+
+.hero-badge{
+
+  width:fit-content;
+
+  padding:12px 18px;
+
+  border-radius:999px;
+
+  background:var(--light);
+
+  color:var(--primary);
+
+  font-size:14px;
+  font-weight:700;
+
+  margin-bottom:24px;
+
+  border:1px solid var(--border);
+
 }
 
 .hero h1{
-  font-size:48px;
-  margin-bottom:15px;
+
+  font-size:76px;
+
+  line-height:1.02;
+
+  letter-spacing:-2px;
+
+  margin-bottom:28px;
+
+}
+
+.hero h1 span{
+
+  color:var(--primary);
+
 }
 
 .hero p{
-  font-size:18px;
-  max-width:700px;
-  margin:auto;
+
+  font-size:20px;
+
+  line-height:1.9;
+
+  color:var(--muted);
+
+  margin-bottom:40px;
+
 }
 
-.hero-stats{
+/* HERO BUTTONS */
+
+.hero-buttons{
+
   display:flex;
-  justify-content:center;
-  gap:25px;
-  margin-top:30px;
+  gap:18px;
   flex-wrap:wrap;
+
+}
+
+.primary-btn,
+.secondary-btn{
+
+  border:none;
+
+  padding:18px 28px;
+
+  border-radius:18px;
+
+  font-size:16px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.35s;
+
+}
+
+.primary-btn{
+
+  background:var(--primary);
+
+  color:white;
+
+  box-shadow:
+  0 14px 35px rgba(37,99,235,0.25);
+
+}
+
+.primary-btn:hover{
+
+  transform:translateY(-4px);
+
+  background:var(--primary-dark);
+
+}
+
+.secondary-btn{
+
+  background:white;
+
+  border:1px solid var(--border);
+
+  color:var(--text);
+
+}
+
+.secondary-btn:hover{
+
+  transform:translateY(-4px);
+
+  border-color:var(--primary);
+
+  color:var(--primary);
+
+}
+
+/* RIGHT */
+
+.hero-right{
+
+  width:420px;
+
+  position:relative;
+
+}
+
+.dashboard{
+
+  background:white;
+
+  border-radius:34px;
+
+  padding:28px;
+
+  box-shadow:
+  0 25px 70px rgba(37,99,235,0.12);
+
+  border:1px solid rgba(219,234,254,0.6);
+
+}
+
+.dashboard-top{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:30px;
+
+}
+
+.dashboard-title{
+
+  font-size:22px;
+  font-weight:700;
+
+}
+
+.status{
+
+  padding:10px 14px;
+
+  border-radius:999px;
+
+  background:#dcfce7;
+
+  color:#15803d;
+
+  font-size:13px;
+  font-weight:700;
+
+}
+
+/* STATS */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:18px;
+
 }
 
 .stat{
-  background:rgba(255,255,255,0.15);
-  padding:20px 30px;
-  border-radius:20px;
-  min-width:140px;
+
+  background:#f8fbff;
+
+  border:1px solid var(--border);
+
+  border-radius:24px;
+
+  padding:24px;
+
 }
 
 .stat h2{
+
   font-size:38px;
+
+  color:var(--primary);
+
+  margin-bottom:8px;
+
 }
 
-/* MAIN LAYOUT */
+.stat span{
 
-.container{
-  width:100%;
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:3fr 1fr;
-  gap:20px;
-  padding:20px;
+  color:var(--muted);
+
+  font-size:14px;
+
+}
+
+/* SECTIONS */
+
+.section{
+
+  padding:110px 7%;
+
+}
+
+/* TITLE */
+
+.section-header{
+
+  text-align:center;
+
+  margin-bottom:70px;
+
+}
+
+.section-header h2{
+
+  font-size:56px;
+
+  margin-bottom:18px;
+
+  letter-spacing:-1px;
+
+}
+
+.section-header p{
+
+  color:var(--muted);
+
+  max-width:760px;
+
+  margin:auto;
+
+  line-height:1.9;
+
+  font-size:18px;
+
 }
 
 /* SEARCH */
 
-.search{
+.search-container{
+
   width:100%;
-  padding:15px;
+
+  max-width:800px;
+
+  margin:auto auto 40px;
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:22px 26px;
+
+  box-shadow:
+  0 18px 50px rgba(37,99,235,0.08);
+
+  border:1px solid rgba(219,234,254,0.7);
+
+}
+
+.search{
+
+  width:100%;
+
   border:none;
-  border-radius:16px;
-  font-size:16px;
-  background:white;
-  margin-bottom:20px;
+  outline:none;
+
+  font-size:17px;
+
+  background:none;
+
 }
 
-/* CATEGORIES */
+/* FILTERS */
 
-.categories{
+.filters{
+
   display:flex;
-  gap:12px;
+  justify-content:center;
+  gap:14px;
   flex-wrap:wrap;
-  margin-bottom:20px;
+
+  margin-bottom:50px;
+
 }
 
-.cat{
-  padding:10px 18px;
-  border-radius:30px;
+.filter{
+
+  padding:14px 22px;
+
+  border-radius:999px;
+
   background:white;
+
+  border:1px solid var(--border);
+
+  font-size:14px;
+  font-weight:700;
+
+  color:var(--primary);
+
   cursor:pointer;
-  font-weight:bold;
+
   transition:0.3s;
+
 }
 
-.cat.active{
-  background:#2563eb;
+.filter:hover{
+
+  background:var(--primary);
   color:white;
-}
 
-/* GOALS */
-
-.goals{
-  background:white;
-  padding:20px;
-  border-radius:20px;
-  margin-bottom:20px;
-}
-
-.goal{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#eff6ff;
-  padding:14px;
-  border-radius:14px;
-  margin-top:12px;
-}
-
-/* QUIZ */
-
-.quiz-box{
-  margin-top:20px;
-  background:white;
-  padding:20px;
-  border-radius:20px;
-}
-
-.answer{
-  margin-top:10px;
-  padding:12px;
-  background:#eff6ff;
-  border-radius:12px;
-  cursor:pointer;
-}
-
-/* AI */
-
-.ai-box{
-  margin-top:20px;
-  background:white;
-  padding:20px;
-  border-radius:20px;
-}
-
-.ai-response{
-  margin-top:15px;
-  background:#eff6ff;
-  padding:15px;
-  border-radius:14px;
-  min-height:80px;
 }
 
 /* GRID */
 
 .grid{
+
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-  margin-top:20px;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(340px,1fr));
+
+  gap:30px;
+
 }
 
 /* CARD */
 
 .card{
+
   background:white;
-  border-radius:18px;
+
+  border-radius:30px;
+
   overflow:hidden;
+
+  transition:0.4s;
+
   cursor:pointer;
-  transition:0.3s;
-  position:relative;
+
+  border:1px solid rgba(219,234,254,0.6);
+
+  box-shadow:
+  0 20px 55px rgba(37,99,235,0.08);
+
 }
 
 .card:hover{
-  transform:translateY(-5px);
+
+  transform:
+  translateY(-10px);
+
+  box-shadow:
+  0 30px 70px rgba(37,99,235,0.15);
+
+}
+
+.card-image{
+
+  position:relative;
+
 }
 
 .thumb{
+
   width:100%;
-  height:200px;
+  height:240px;
+
   object-fit:cover;
+
+}
+
+.level{
+
+  position:absolute;
+
+  top:18px;
+  left:18px;
+
+  padding:10px 16px;
+
+  border-radius:999px;
+
+  background:white;
+
+  color:var(--primary);
+
+  font-size:13px;
+  font-weight:800;
+
 }
 
 .card-content{
-  padding:16px;
+
+  padding:28px;
+
 }
 
-.title{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:8px;
+.card-content h3{
+
+  font-size:28px;
+
+  margin-bottom:14px;
+
 }
 
-.desc{
-  color:#475569;
-  font-size:14px;
-  margin-bottom:15px;
+.card-content p{
+
+  color:var(--muted);
+
+  line-height:1.8;
+
+  margin-bottom:24px;
+
 }
 
-.meta{
+.card-footer{
+
   display:flex;
   justify-content:space-between;
-  color:#64748b;
-  font-size:13px;
+  align-items:center;
+
 }
 
-.badge{
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:#f59e0b;
+.card-footer span{
+
+  color:var(--muted);
+
+  font-size:14px;
+
+}
+
+.watch-btn{
+
+  width:auto;
+
+  padding:12px 18px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:var(--primary);
+
   color:white;
-  padding:6px 10px;
-  border-radius:30px;
-  font-size:12px;
-  font-weight:bold;
+
+  font-weight:700;
+
+  cursor:pointer;
+
 }
 
-/* COMMUNITY */
+/* FEATURES */
 
-.panel{
+.features{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap:28px;
+
+}
+
+.feature{
+
   background:white;
+
+  padding:38px;
+
+  border-radius:30px;
+
+  border:1px solid rgba(219,234,254,0.6);
+
+  box-shadow:
+  0 20px 55px rgba(37,99,235,0.08);
+
+}
+
+.feature-icon{
+
+  width:70px;
+  height:70px;
+
   border-radius:20px;
-  padding:20px;
-  height:fit-content;
-  position:sticky;
-  top:20px;
+
+  background:var(--light);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:30px;
+
+  margin-bottom:22px;
+
+}
+
+.feature h3{
+
+  font-size:28px;
+
+  margin-bottom:14px;
+
+}
+
+.feature p{
+
+  color:var(--muted);
+
+  line-height:1.9;
+
+}
+
+/* AI SECTION */
+
+.ai-section{
+
+  background:white;
+
+  border-radius:34px;
+
+  padding:45px;
+
+  max-width:900px;
+
+  margin:auto;
+
+  border:1px solid rgba(219,234,254,0.6);
+
+  box-shadow:
+  0 20px 55px rgba(37,99,235,0.08);
+
 }
 
 textarea{
+
   width:100%;
+
+  margin-top:24px;
+
   border:none;
-  border-radius:14px;
-  padding:12px;
+
+  background:#f8fbff;
+
+  border:1px solid var(--border);
+
+  padding:22px;
+
+  border-radius:22px;
+
   resize:none;
-  background:#f1f5f9;
-  margin-top:10px;
+
+  font-size:16px;
+
+  min-height:180px;
+
+  outline:none;
+
 }
 
-button{
+.ai-btn{
+
   width:100%;
-  padding:12px;
+
   border:none;
-  border-radius:14px;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:10px;
-}
 
-.post{
-  background:#eff6ff;
-  padding:12px;
-  border-radius:12px;
-  margin-top:12px;
-}
+  padding:18px;
 
-/* MODAL */
-
-.modal{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  z-index:1000;
-}
-
-.modal-content{
-  width:95%;
-  max-width:1100px;
-  margin:40px auto;
-  background:white;
   border-radius:20px;
-  padding:20px;
+
+  background:var(--primary);
+
+  color:white;
+
+  font-size:16px;
+  font-weight:700;
+
+  margin-top:18px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
 }
 
-.video{
-  width:100%;
-  height:600px;
-  border:none;
-  border-radius:14px;
-  margin-bottom:20px;
+.ai-btn:hover{
+
+  background:var(--primary-dark);
+
 }
 
-.comment{
-  background:#f1f5f9;
-  padding:10px;
-  border-radius:10px;
-  margin-top:10px;
+.response{
+
+  margin-top:26px;
+
+  background:#f8fbff;
+
+  border:1px solid var(--border);
+
+  border-radius:22px;
+
+  padding:26px;
+
+  line-height:1.9;
+
+  color:var(--muted);
+
+}
+
+/* FOOTER */
+
+footer{
+
+  padding:50px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:15px;
+
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:980px){
 
-  .container{
-    grid-template-columns:1fr;
+  .hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
   }
 
-  .video{
-    height:300px;
+  .hero-buttons{
+
+    justify-content:center;
+
   }
 
   .hero h1{
-    font-size:32px;
+
+    font-size:52px;
+
+  }
+
+  .hero-right{
+
+    width:100%;
+
+    max-width:500px;
+
+  }
+
+  .section-header h2{
+
+    font-size:42px;
+
+  }
+
+  .navbar{
+
+    padding:0 20px;
+
+  }
+
+  .nav-links{
+
+    display:none;
+
   }
 
 }
@@ -342,618 +914,524 @@ button{
 
 <body>
 
-<header>
-  DIY Tutorials Hub
-</header>
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+  <div class="logo">
+
+    <div class="logo-icon">
+      ⚡
+    </div>
+
+    DIY Academy
+
+  </div>
+
+  <div class="nav-links">
+
+    <a href="#tutorials">
+      Tutorials
+    </a>
+
+    <a href="#features">
+      Features
+    </a>
+
+    <a href="#assistant">
+      AI Assistant
+    </a>
+
+    <a href="#assistant" class="nav-btn">
+      Start Learning
+    </a>
+
+  </div>
+
+</nav>
 
 <!-- HERO -->
 
-<div class="hero">
+<section class="hero">
 
-  <h1>🚀 Become a DIY Master</h1>
+  <div class="hero-left">
 
-  <p>
-    Watch tutorials, complete goals,
-    earn XP, take quizzes, and use AI mode.
-  </p>
-
-  <div class="hero-stats">
-
-    <div class="stat">
-      <h2 id="xp">0</h2>
-      <span>XP</span>
+    <div class="hero-badge">
+      #1 DIY Learning Platform
     </div>
 
-    <div class="stat">
-      <h2 id="level">1</h2>
-      <span>Level</span>
-    </div>
+    <h1>
 
-    <div class="stat">
-      <h2 id="completed">0</h2>
-      <span>Completed</span>
+      Learn
+      <span>DIY Skills</span>
+      Like a Professional
+
+    </h1>
+
+    <p>
+
+      Build real-world technical skills through
+      premium tutorials, guided projects,
+      interactive learning, and AI-powered support.
+
+    </p>
+
+    <div class="hero-buttons">
+
+      <button class="primary-btn">
+        Start Learning
+      </button>
+
+      <button class="secondary-btn">
+        Explore Tutorials
+      </button>
+
     </div>
 
   </div>
 
-</div>
+  <div class="hero-right">
 
-<div class="container">
+    <div class="dashboard">
 
-  <!-- LEFT -->
+      <div class="dashboard-top">
 
-  <div>
+        <div class="dashboard-title">
+          Learning Dashboard
+        </div>
+
+        <div class="status">
+          Online
+        </div>
+
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+
+          <h2>12K+</h2>
+
+          <span>Active Students</span>
+
+        </div>
+
+        <div class="stat">
+
+          <h2>320+</h2>
+
+          <span>DIY Tutorials</span>
+
+        </div>
+
+        <div class="stat">
+
+          <h2>98%</h2>
+
+          <span>Success Rate</span>
+
+        </div>
+
+        <div class="stat">
+
+          <h2>4.9★</h2>
+
+          <span>User Rating</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TUTORIALS -->
+
+<section class="section" id="tutorials">
+
+  <div class="section-header">
+
+    <h2>
+      Featured Tutorials
+    </h2>
+
+    <p>
+
+      Learn modern repair, upgrade,
+      and setup techniques from detailed
+      professional tutorials.
+
+    </p>
+
+  </div>
+
+  <div class="search-container">
 
     <input
       class="search"
       placeholder="Search tutorials..."
-      oninput="render()"
-    />
-
-    <div class="categories" id="cats"></div>
-
-    <!-- GOALS -->
-
-    <div class="goals">
-
-      <h2>🎯 Daily Goals</h2>
-
-      <div class="goal">
-        <span>Watch 3 tutorials</span>
-        <button onclick="completeGoal(50)">
-          +50 XP
-        </button>
-      </div>
-
-      <div class="goal">
-        <span>Complete Quiz</span>
-        <button onclick="completeGoal(100)">
-          +100 XP
-        </button>
-      </div>
-
-      <div class="goal">
-        <span>Post Community Message</span>
-        <button onclick="completeGoal(25)">
-          +25 XP
-        </button>
-      </div>
-
-    </div>
-
-    <!-- QUIZ -->
-
-    <div class="quiz-box">
-
-      <h2>🧠 DIY Quiz</h2>
-
-      <h3>
-        What does SSD stand for?
-      </h3>
-
-      <div class="answer" onclick="checkQuiz(this,true)">
-        Solid State Drive
-      </div>
-
-      <div class="answer" onclick="checkQuiz(this,false)">
-        Super Speed Disk
-      </div>
-
-      <div class="answer" onclick="checkQuiz(this,false)">
-        Smart Storage Device
-      </div>
-
-      <div
-        id="quizResult"
-        style="margin-top:15px;font-weight:bold;"
-      ></div>
-
-    </div>
-
-    <!-- AI -->
-
-    <div class="ai-box">
-
-      <h2>🤖 DIY AI Assistant</h2>
-
-      <textarea
-        id="aiInput"
-        rows="4"
-        placeholder="Ask AI anything..."
-      ></textarea>
-
-      <button onclick="askAI()">
-        Ask AI
-      </button>
-
-      <div class="ai-response" id="aiResponse">
-        AI is ready to help you.
-      </div>
-
-    </div>
-
-    <!-- VIDEOS -->
-
-    <div class="grid" id="list"></div>
+    >
 
   </div>
 
-  <!-- RIGHT -->
+  <div class="filters">
 
-  <div class="panel">
+    <div class="filter">
+      All
+    </div>
 
-    <h2>💬 Community Feed</h2>
+    <div class="filter">
+      Phone Repair
+    </div>
 
-    <textarea
-      id="msg"
-      rows="4"
-      placeholder="Share your experience..."
-    ></textarea>
+    <div class="filter">
+      Laptop Upgrade
+    </div>
 
-    <button onclick="addPost()">
-      Post Experience
-    </button>
+    <div class="filter">
+      Gaming PC
+    </div>
 
-    <div id="posts"></div>
+    <div class="filter">
+      Networking
+    </div>
 
   </div>
 
-</div>
+  <div class="grid">
 
-<!-- MODAL -->
+    <!-- CARD -->
 
-<div class="modal" id="modal">
+    <div class="card">
 
-  <div class="modal-content">
+      <div class="card-image">
 
-    <iframe
-      class="video"
-      id="videoFrame"
-      allowfullscreen
-    ></iframe>
+        <img
+          class="thumb"
+          src="https://img.youtube.com/vi/6Maq5IyHSuc/hqdefault.jpg"
+        >
 
-    <h2 id="mTitle"></h2>
+        <div class="level">
+          Beginner
+        </div>
 
-    <p
-      id="mDesc"
-      style="margin-top:10px;margin-bottom:20px;"
-    ></p>
-
-    <h3>💬 Comments</h3>
-
-    <textarea
-      id="commentInput"
-      rows="3"
-      placeholder="Write comment..."
-    ></textarea>
-
-    <button onclick="addComment()">
-      Add Comment
-    </button>
-
-    <div id="comments"></div>
-
-    <button
-      onclick="closeModal()"
-      style="background:#ef4444;"
-    >
-      Close
-    </button>
-
-  </div>
-
-</div>
-
-<script>
-
-/* DATA */
-
-const data = [
-
-{
-  id:1,
-  title:"Fix Phone Screen",
-  desc:"Replace cracked smartphone screen.",
-  cat:"Phone",
-  views:1200,
-  thumb:"https://img.youtube.com/vi/6Maq5IyHSuc/hqdefault.jpg",
-  video:"https://www.youtube.com/embed/6Maq5IyHSuc"
-},
-
-{
-  id:2,
-  title:"Install SSD in Laptop",
-  desc:"Upgrade laptop speed.",
-  cat:"Laptop",
-  views:2400,
-  thumb:"https://img.youtube.com/vi/5NckCxoxobE/hqdefault.jpg",
-  video:"https://www.youtube.com/embed/5NckCxoxobE"
-},
-
-{
-  id:3,
-  title:"Build Gaming PC",
-  desc:"Full gaming PC tutorial.",
-  cat:"PC Build",
-  views:5200,
-  thumb:"https://img.youtube.com/vi/PXaLc9AYIcg/hqdefault.jpg",
-  video:"https://www.youtube.com/embed/PXaLc9AYIcg"
-},
-
-{
-  id:4,
-  title:"Fix Slow WiFi",
-  desc:"Boost internet speed.",
-  cat:"Tech",
-  views:1500,
-  thumb:"https://img.youtube.com/vi/5QYqBJL8M0Q/hqdefault.jpg",
-  video:"https://www.youtube.com/embed/5QYqBJL8M0Q"
-},
-
-{
-  id:5,
-  title:"DIY LED Setup",
-  desc:"Make your room look amazing.",
-  cat:"DIY",
-  views:8100,
-  thumb:"https://img.youtube.com/vi/JXkjjbBi6Ck/hqdefault.jpg",
-  video:"https://www.youtube.com/embed/JXkjjbBi6Ck"
-}
-
-];
-
-/* VARIABLES */
-
-let current = "All";
-let currentVideo = null;
-
-const cats = ["All", ...new Set(data.map(d=>d.cat))];
-
-let posts =
-JSON.parse(localStorage.getItem("posts")||"[]");
-
-let comments =
-JSON.parse(localStorage.getItem("comments")||"{}");
-
-let xp =
-Number(localStorage.getItem("xp")||0);
-
-let level =
-Number(localStorage.getItem("level")||1);
-
-let completed =
-Number(localStorage.getItem("completed")||0);
-
-/* STATS */
-
-function updateStats(){
-
-  document.getElementById("xp").innerText = xp;
-
-  document.getElementById("level").innerText = level;
-
-  document.getElementById("completed").innerText = completed;
-
-}
-
-/* GOALS */
-
-function completeGoal(amount){
-
-  xp += amount;
-
-  completed++;
-
-  if(xp >= level * 200){
-
-    level++;
-
-    alert("🎉 LEVEL UP!");
-
-  }
-
-  localStorage.setItem("xp",xp);
-  localStorage.setItem("level",level);
-  localStorage.setItem("completed",completed);
-
-  updateStats();
-
-}
-
-/* QUIZ */
-
-function checkQuiz(el,correct){
-
-  const result =
-  document.getElementById("quizResult");
-
-  if(correct){
-
-    result.innerHTML =
-    "✅ Correct! +75 XP";
-
-    xp += 75;
-
-    updateStats();
-
-    localStorage.setItem("xp",xp);
-
-    el.style.background="#22c55e";
-    el.style.color="white";
-
-  }else{
-
-    result.innerHTML =
-    "❌ Wrong Answer";
-
-    el.style.background="#ef4444";
-    el.style.color="white";
-
-  }
-
-}
-
-/* AI */
-
-function askAI(){
-
-  const q =
-  document.getElementById("aiInput")
-  .value
-  .toLowerCase();
-
-  const box =
-  document.getElementById("aiResponse");
-
-  let response =
-  "🤖 AI could not find an answer.";
-
-  if(q.includes("phone")){
-
-    response =
-    "📱 Restart your phone and check battery health.";
-
-  }
-
-  else if(q.includes("laptop")){
-
-    response =
-    "💻 Installing SSD upgrades speed a lot.";
-
-  }
-
-  else if(q.includes("wifi")){
-
-    response =
-    "📶 Move router to open space for better signal.";
-
-  }
-
-  else if(q.includes("gaming pc")){
-
-    response =
-    "🎮 Use 16GB RAM minimum for gaming.";
-
-  }
-
-  box.innerHTML = response;
-
-}
-
-/* CATEGORIES */
-
-function loadCats(){
-
-  document.getElementById("cats").innerHTML =
-  cats.map(c=>`
-
-    <div
-      class="cat ${c===current?'active':''}"
-      onclick="setCat('${c}')"
-    >
-      ${c}
-    </div>
-
-  `).join('');
-
-}
-
-function setCat(c){
-
-  current = c;
-
-  loadCats();
-
-  render();
-
-}
-
-/* OPEN VIDEO */
-
-function openModal(item){
-
-  currentVideo = item;
-
-  document.getElementById("modal").style.display =
-  "block";
-
-  document.getElementById("mTitle").innerText =
-  item.title;
-
-  document.getElementById("mDesc").innerText =
-  item.desc;
-
-  document.getElementById("videoFrame").src =
-  item.video;
-
-  xp += 20;
-
-  localStorage.setItem("xp",xp);
-
-  updateStats();
-
-  loadComments(item.id);
-
-}
-
-/* CLOSE */
-
-function closeModal(){
-
-  document.getElementById("modal").style.display =
-  "none";
-
-  document.getElementById("videoFrame").src = "";
-
-}
-
-/* COMMENTS */
-
-function addComment(){
-
-  const val =
-  document.getElementById("commentInput").value;
-
-  if(!val) return;
-
-  if(!comments[currentVideo.id]){
-
-    comments[currentVideo.id] = [];
-
-  }
-
-  comments[currentVideo.id].push(val);
-
-  localStorage.setItem(
-    "comments",
-    JSON.stringify(comments)
-  );
-
-  document.getElementById("commentInput").value =
-  "";
-
-  loadComments(currentVideo.id);
-
-}
-
-function loadComments(id){
-
-  const list = comments[id] || [];
-
-  document.getElementById("comments").innerHTML =
-  list.map(c=>`
-
-    <div class="comment">
-      ${c}
-    </div>
-
-  `).join('');
-
-}
-
-/* POSTS */
-
-function addPost(){
-
-  const val =
-  document.getElementById("msg").value;
-
-  if(!val) return;
-
-  posts.unshift(val);
-
-  localStorage.setItem(
-    "posts",
-    JSON.stringify(posts)
-  );
-
-  document.getElementById("msg").value = "";
-
-  renderPosts();
-
-}
-
-function renderPosts(){
-
-  document.getElementById("posts").innerHTML =
-  posts.map(p=>`
-
-    <div class="post">
-      ${p}
-    </div>
-
-  `).join('');
-
-}
-
-/* MAIN RENDER */
-
-function render(){
-
-  const q =
-  document.querySelector(".search")
-  .value
-  .toLowerCase();
-
-  const list = data.filter(d=>
-
-    (current==="All"||d.cat===current)
-
-    &&
-
-    d.title.toLowerCase().includes(q)
-
-  );
-
-  document.getElementById("list").innerHTML =
-
-  list.map(d=>`
-
-    <div
-      class="card"
-      onclick='openModal(${JSON.stringify(d)})'
-    >
-
-      <div class="badge">
-        +20 XP
       </div>
-
-      <img class="thumb" src="${d.thumb}" />
 
       <div class="card-content">
 
-        <div class="title">
-          ${d.title}
-        </div>
+        <h3>
+          Phone Screen Repair
+        </h3>
 
-        <div class="desc">
-          ${d.desc}
-        </div>
+        <p>
 
-        <div class="meta">
-          <span>${d.cat}</span>
-          <span>${d.views} views</span>
+          Learn professional smartphone screen
+          replacement techniques using the correct tools.
+
+        </p>
+
+        <div class="card-footer">
+
+          <span>
+            12K Views
+          </span>
+
+          <button class="watch-btn">
+            Watch Now
+          </button>
+
         </div>
 
       </div>
 
     </div>
 
-  `).join('');
+    <!-- CARD -->
+
+    <div class="card">
+
+      <div class="card-image">
+
+        <img
+          class="thumb"
+          src="https://img.youtube.com/vi/PXaLc9AYIcg/hqdefault.jpg"
+        >
+
+        <div class="level">
+          Advanced
+        </div>
+
+      </div>
+
+      <div class="card-content">
+
+        <h3>
+          Gaming PC Build
+        </h3>
+
+        <p>
+
+          Complete high-performance gaming PC
+          build tutorial for beginners and enthusiasts.
+
+        </p>
+
+        <div class="card-footer">
+
+          <span>
+            52K Views
+          </span>
+
+          <button class="watch-btn">
+            Watch Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CARD -->
+
+    <div class="card">
+
+      <div class="card-image">
+
+        <img
+          class="thumb"
+          src="https://img.youtube.com/vi/5NckCxoxobE/hqdefault.jpg"
+        >
+
+        <div class="level">
+          Fast Track
+        </div>
+
+      </div>
+
+      <div class="card-content">
+
+        <h3>
+          SSD Installation
+        </h3>
+
+        <p>
+
+          Upgrade your laptop performance with
+          step-by-step SSD installation guidance.
+
+        </p>
+
+        <div class="card-footer">
+
+          <span>
+            24K Views
+          </span>
+
+          <button class="watch-btn">
+            Watch Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="section" id="features">
+
+  <div class="section-header">
+
+    <h2>
+      Why Choose DIY Academy
+    </h2>
+
+    <p>
+
+      Everything you need to learn faster,
+      improve technical skills,
+      and complete real-world projects.
+
+    </p>
+
+  </div>
+
+  <div class="features">
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎯
+      </div>
+
+      <h3>
+        Skill Tracking
+      </h3>
+
+      <p>
+
+        Monitor your learning progress,
+        earn achievements,
+        and track completed tutorials.
+
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🤖
+      </div>
+
+      <h3>
+        AI Assistance
+      </h3>
+
+      <p>
+
+        Receive instant troubleshooting,
+        repair tips,
+        and technical recommendations.
+
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🚀
+      </div>
+
+      <h3>
+        Professional Tutorials
+      </h3>
+
+      <p>
+
+        Learn through premium-quality
+        tutorials designed by experienced creators.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- AI -->
+
+<section class="section" id="assistant">
+
+  <div class="section-header">
+
+    <h2>
+      AI DIY Assistant
+    </h2>
+
+    <p>
+
+      Ask technical questions and get
+      instant DIY support.
+
+    </p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <textarea
+      id="question"
+      placeholder="Ask about repairs, upgrades, gaming PCs, SSDs, WiFi issues..."
+    ></textarea>
+
+    <button
+      class="ai-btn"
+      onclick="askAI()"
+    >
+      Ask Assistant
+    </button>
+
+    <div class="response" id="response">
+
+      Your AI assistant is ready to help you.
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  © 2026 DIY Academy • Professional DIY Learning Platform
+
+</footer>
+
+<script>
+
+function askAI(){
+
+  const question =
+  document
+  .getElementById("question")
+  .value
+  .toLowerCase();
+
+  const response =
+  document
+  .getElementById("response");
+
+  let text =
+  "Try asking about laptops, gaming PCs, SSDs, networking, or phone repair.";
+
+  if(question.includes("ssd")){
+
+    text =
+    "Installing an SSD significantly improves boot speed, app loading times, and overall system responsiveness.";
+
+  }
+
+  else if(question.includes("wifi")){
+
+    text =
+    "Place your router in an elevated open area and reduce nearby interference for better WiFi performance.";
+
+  }
+
+  else if(question.includes("gaming pc")){
+
+    text =
+    "For a balanced gaming PC build, use at least 16GB RAM, a dedicated GPU, and an SSD for storage.";
+
+  }
+
+  else if(question.includes("phone")){
+
+    text =
+    "Before repairing a smartphone, disconnect the battery and organize screws carefully to avoid damage.";
+
+  }
+
+  response.innerHTML = text;
 
 }
-
-/* INIT */
-
-loadCats();
-
-render();
-
-renderPosts();
-
-updateStats();
 
 </script>
 
 </body>
 </html>
+```
