@@ -5,16 +5,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>DIY Academy</title>
+<title>DIY AI Academy App</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* RESET */
 
 *{
   margin:0;
@@ -22,889 +17,303 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
-
   font-family:'Inter',sans-serif;
-
-  background:#f5f9ff;
-
+  background:#f4f8ff;
   color:#0f172a;
-
   overflow-x:hidden;
-
 }
 
-/* VARIABLES */
+/* HEADER */
 
-:root{
-
-  --primary:#2563eb;
-  --primary-dark:#1d4ed8;
-  --light:#eff6ff;
-  --border:#dbeafe;
-  --text:#0f172a;
-  --muted:#64748b;
-  --white:#ffffff;
-
-}
-
-/* NAVBAR */
-
-.navbar{
-
-  width:100%;
-  height:82px;
-
-  position:fixed;
+header{
+  position:sticky;
   top:0;
-
   z-index:1000;
-
+  background:white;
+  border-bottom:1px solid #dbeafe;
+  padding:18px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  padding:0 7%;
-
-  background:rgba(255,255,255,0.85);
-
-  backdrop-filter:blur(16px);
-
-  border-bottom:1px solid rgba(219,234,254,0.7);
-
 }
 
 .logo{
-
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  font-size:28px;
+  font-size:22px;
   font-weight:800;
-
-  color:var(--primary);
-
+  color:#2563eb;
 }
 
-.logo-icon{
-
-  width:44px;
-  height:44px;
-
-  border-radius:14px;
-
-  background:
-  linear-gradient(
-    135deg,
-    var(--primary),
-    #60a5fa
-  );
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
+.profile{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#2563eb;
   color:white;
-
-  font-size:20px;
-
-  box-shadow:
-  0 10px 25px rgba(37,99,235,0.25);
-
-}
-
-.nav-links{
-
   display:flex;
   align-items:center;
-  gap:10px;
-
-}
-
-.nav-links a{
-
-  text-decoration:none;
-
-  color:var(--text);
-
-  font-size:15px;
-  font-weight:600;
-
-  padding:12px 18px;
-
-  border-radius:12px;
-
-  transition:0.3s;
-
-}
-
-.nav-links a:hover{
-
-  background:var(--light);
-
-  color:var(--primary);
-
-}
-
-.nav-btn{
-
-  background:var(--primary);
-
-  color:white !important;
-
-}
-
-.nav-btn:hover{
-
-  background:var(--primary-dark) !important;
-  color:white !important;
-
+  justify-content:center;
+  font-weight:bold;
 }
 
 /* HERO */
 
 .hero{
-
-  width:100%;
-
-  min-height:100vh;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  gap:60px;
-
-  padding:
-  160px 7%
-  100px;
-
-  background:
-  radial-gradient(
-    circle at top right,
-    rgba(96,165,250,0.18),
-    transparent 30%
-  ),
-  linear-gradient(
-    180deg,
-    #ffffff,
-    #f5f9ff
-  );
-
-}
-
-/* LEFT */
-
-.hero-left{
-
-  flex:1;
-
-  max-width:720px;
-
-}
-
-.hero-badge{
-
-  width:fit-content;
-
-  padding:12px 18px;
-
-  border-radius:999px;
-
-  background:var(--light);
-
-  color:var(--primary);
-
-  font-size:14px;
-  font-weight:700;
-
-  margin-bottom:24px;
-
-  border:1px solid var(--border);
-
+  padding:40px 20px;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb,#60a5fa);
+  color:white;
 }
 
 .hero h1{
-
-  font-size:76px;
-
-  line-height:1.02;
-
-  letter-spacing:-2px;
-
-  margin-bottom:28px;
-
-}
-
-.hero h1 span{
-
-  color:var(--primary);
-
+  font-size:38px;
+  margin-bottom:10px;
 }
 
 .hero p{
-
-  font-size:20px;
-
-  line-height:1.9;
-
-  color:var(--muted);
-
-  margin-bottom:40px;
-
-}
-
-/* HERO BUTTONS */
-
-.hero-buttons{
-
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
-
-}
-
-.primary-btn,
-.secondary-btn{
-
-  border:none;
-
-  padding:18px 28px;
-
-  border-radius:18px;
-
-  font-size:16px;
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:0.35s;
-
-}
-
-.primary-btn{
-
-  background:var(--primary);
-
-  color:white;
-
-  box-shadow:
-  0 14px 35px rgba(37,99,235,0.25);
-
-}
-
-.primary-btn:hover{
-
-  transform:translateY(-4px);
-
-  background:var(--primary-dark);
-
-}
-
-.secondary-btn{
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  color:var(--text);
-
-}
-
-.secondary-btn:hover{
-
-  transform:translateY(-4px);
-
-  border-color:var(--primary);
-
-  color:var(--primary);
-
-}
-
-/* RIGHT */
-
-.hero-right{
-
-  width:420px;
-
-  position:relative;
-
-}
-
-.dashboard{
-
-  background:white;
-
-  border-radius:34px;
-
-  padding:28px;
-
-  box-shadow:
-  0 25px 70px rgba(37,99,235,0.12);
-
-  border:1px solid rgba(219,234,254,0.6);
-
-}
-
-.dashboard-top{
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  margin-bottom:30px;
-
-}
-
-.dashboard-title{
-
-  font-size:22px;
-  font-weight:700;
-
-}
-
-.status{
-
-  padding:10px 14px;
-
-  border-radius:999px;
-
-  background:#dcfce7;
-
-  color:#15803d;
-
-  font-size:13px;
-  font-weight:700;
-
+  opacity:0.9;
+  max-width:600px;
 }
 
 /* STATS */
 
 .stats{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(2,1fr);
-
-  gap:18px;
-
+  display:flex;
+  gap:15px;
+  margin-top:25px;
+  flex-wrap:wrap;
 }
 
 .stat{
-
-  background:#f8fbff;
-
-  border:1px solid var(--border);
-
-  border-radius:24px;
-
-  padding:24px;
-
+  background:rgba(255,255,255,0.15);
+  padding:15px 20px;
+  border-radius:16px;
+  min-width:120px;
+  backdrop-filter:blur(5px);
 }
 
 .stat h2{
-
-  font-size:38px;
-
-  color:var(--primary);
-
-  margin-bottom:8px;
-
-}
-
-.stat span{
-
-  color:var(--muted);
-
-  font-size:14px;
-
-}
-
-/* SECTIONS */
-
-.section{
-
-  padding:110px 7%;
-
-}
-
-/* TITLE */
-
-.section-header{
-
-  text-align:center;
-
-  margin-bottom:70px;
-
-}
-
-.section-header h2{
-
-  font-size:56px;
-
-  margin-bottom:18px;
-
-  letter-spacing:-1px;
-
-}
-
-.section-header p{
-
-  color:var(--muted);
-
-  max-width:760px;
-
-  margin:auto;
-
-  line-height:1.9;
-
-  font-size:18px;
-
+  font-size:28px;
 }
 
 /* SEARCH */
 
-.search-container{
-
-  width:100%;
-
-  max-width:800px;
-
-  margin:auto auto 40px;
-
-  background:white;
-
-  border-radius:24px;
-
-  padding:22px 26px;
-
-  box-shadow:
-  0 18px 50px rgba(37,99,235,0.08);
-
-  border:1px solid rgba(219,234,254,0.7);
-
+.search-wrap{
+  padding:20px;
 }
 
 .search{
-
   width:100%;
-
+  padding:16px;
   border:none;
-  outline:none;
-
-  font-size:17px;
-
-  background:none;
-
-}
-
-/* FILTERS */
-
-.filters{
-
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
-
-  margin-bottom:50px;
-
-}
-
-.filter{
-
-  padding:14px 22px;
-
-  border-radius:999px;
-
+  border-radius:16px;
   background:white;
-
-  border:1px solid var(--border);
-
-  font-size:14px;
-  font-weight:700;
-
-  color:var(--primary);
-
-  cursor:pointer;
-
-  transition:0.3s;
-
+  font-size:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.06);
+  outline:none;
 }
 
-.filter:hover{
+/* CATEGORY */
 
-  background:var(--primary);
+.categories{
+  display:flex;
+  gap:10px;
+  padding:0 20px;
+  overflow:auto;
+}
+
+.cat{
+  white-space:nowrap;
+  background:white;
+  padding:10px 18px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  border:1px solid #dbeafe;
+  transition:0.3s;
+}
+
+.cat.active{
+  background:#2563eb;
   color:white;
-
 }
 
 /* GRID */
 
 .grid{
-
   display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(340px,1fr));
-
-  gap:30px;
-
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  padding:20px;
 }
 
 /* CARD */
 
 .card{
-
   background:white;
-
-  border-radius:30px;
-
+  border-radius:22px;
   overflow:hidden;
-
-  transition:0.4s;
-
   cursor:pointer;
-
-  border:1px solid rgba(219,234,254,0.6);
-
-  box-shadow:
-  0 20px 55px rgba(37,99,235,0.08);
-
+  transition:0.3s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 .card:hover{
-
-  transform:
-  translateY(-10px);
-
-  box-shadow:
-  0 30px 70px rgba(37,99,235,0.15);
-
-}
-
-.card-image{
-
-  position:relative;
-
+  transform:translateY(-6px);
 }
 
 .thumb{
-
   width:100%;
-  height:240px;
-
+  height:190px;
   object-fit:cover;
-
 }
 
-.level{
-
-  position:absolute;
-
-  top:18px;
-  left:18px;
-
-  padding:10px 16px;
-
-  border-radius:999px;
-
-  background:white;
-
-  color:var(--primary);
-
-  font-size:13px;
-  font-weight:800;
-
+.card-body{
+  padding:16px;
 }
 
-.card-content{
-
-  padding:28px;
-
+.card-title{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:6px;
 }
 
-.card-content h3{
-
-  font-size:28px;
-
-  margin-bottom:14px;
-
+.card-desc{
+  color:#64748b;
+  font-size:14px;
+  margin-bottom:12px;
 }
 
-.card-content p{
-
-  color:var(--muted);
-
-  line-height:1.8;
-
-  margin-bottom:24px;
-
-}
-
-.card-footer{
-
+.meta{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-
+  font-size:13px;
+  color:#64748b;
 }
 
-.card-footer span{
+/* AI */
 
-  color:var(--muted);
-
-  font-size:14px;
-
-}
-
-.watch-btn{
-
-  width:auto;
-
-  padding:12px 18px;
-
-  border:none;
-
-  border-radius:14px;
-
-  background:var(--primary);
-
-  color:white;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-}
-
-/* FEATURES */
-
-.features{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
-
-  gap:28px;
-
-}
-
-.feature{
-
+.ai-box{
+  margin:20px;
   background:white;
-
-  padding:38px;
-
-  border-radius:30px;
-
-  border:1px solid rgba(219,234,254,0.6);
-
-  box-shadow:
-  0 20px 55px rgba(37,99,235,0.08);
-
-}
-
-.feature-icon{
-
-  width:70px;
-  height:70px;
-
   border-radius:20px;
-
-  background:var(--light);
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  font-size:30px;
-
-  margin-bottom:22px;
-
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
 }
 
-.feature h3{
-
-  font-size:28px;
-
-  margin-bottom:14px;
-
-}
-
-.feature p{
-
-  color:var(--muted);
-
-  line-height:1.9;
-
-}
-
-/* AI SECTION */
-
-.ai-section{
-
-  background:white;
-
-  border-radius:34px;
-
-  padding:45px;
-
-  max-width:900px;
-
-  margin:auto;
-
-  border:1px solid rgba(219,234,254,0.6);
-
-  box-shadow:
-  0 20px 55px rgba(37,99,235,0.08);
-
+.ai-box h2{
+  margin-bottom:12px;
 }
 
 textarea{
-
   width:100%;
-
-  margin-top:24px;
-
   border:none;
-
-  background:#f8fbff;
-
-  border:1px solid var(--border);
-
-  padding:22px;
-
-  border-radius:22px;
-
+  background:#f1f5f9;
+  border-radius:14px;
+  padding:14px;
   resize:none;
-
-  font-size:16px;
-
-  min-height:180px;
-
+  min-height:100px;
+  margin-top:10px;
   outline:none;
-
 }
 
-.ai-btn{
-
+button{
   width:100%;
-
   border:none;
-
-  padding:18px;
-
-  border-radius:20px;
-
-  background:var(--primary);
-
+  background:#2563eb;
   color:white;
-
-  font-size:16px;
-  font-weight:700;
-
-  margin-top:18px;
-
+  padding:14px;
+  border-radius:14px;
+  margin-top:12px;
   cursor:pointer;
-
+  font-weight:700;
   transition:0.3s;
-
 }
 
-.ai-btn:hover{
-
-  background:var(--primary-dark);
-
+button:hover{
+  background:#1d4ed8;
 }
 
-.response{
-
-  margin-top:26px;
-
-  background:#f8fbff;
-
-  border:1px solid var(--border);
-
-  border-radius:22px;
-
-  padding:26px;
-
-  line-height:1.9;
-
-  color:var(--muted);
-
+.ai-output{
+  margin-top:15px;
+  background:#eff6ff;
+  padding:15px;
+  border-radius:14px;
+  min-height:80px;
+  line-height:1.6;
 }
 
-/* FOOTER */
+/* COMMUNITY */
 
-footer{
+.community{
+  margin:20px;
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
 
-  padding:50px;
+.post{
+  background:#eff6ff;
+  padding:12px;
+  border-radius:12px;
+  margin-top:12px;
+}
 
-  text-align:center;
+/* MODAL */
 
-  color:var(--muted);
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  padding:20px;
+}
 
-  font-size:15px;
+.modal-content{
+  width:100%;
+  max-width:950px;
+  background:white;
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+}
 
+iframe{
+  width:100%;
+  height:520px;
+  border:none;
+}
+
+.close{
+  position:absolute;
+  top:15px;
+  right:18px;
+  color:white;
+  background:red;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-weight:bold;
+  z-index:100;
 }
 
 /* MOBILE */
 
-@media(max-width:980px){
-
-  .hero{
-
-    flex-direction:column;
-
-    text-align:center;
-
-  }
-
-  .hero-buttons{
-
-    justify-content:center;
-
-  }
+@media(max-width:700px){
 
   .hero h1{
-
-    font-size:52px;
-
+    font-size:28px;
   }
 
-  .hero-right{
-
-    width:100%;
-
-    max-width:500px;
-
-  }
-
-  .section-header h2{
-
-    font-size:42px;
-
-  }
-
-  .navbar{
-
-    padding:0 20px;
-
-  }
-
-  .nav-links{
-
-    display:none;
-
+  iframe{
+    height:260px;
   }
 
 }
@@ -914,521 +323,418 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
+<header>
 
   <div class="logo">
-
-    <div class="logo-icon">
-      ⚡
-    </div>
-
-    DIY Academy
-
+    DIY AI Academy
   </div>
 
-  <div class="nav-links">
-
-    <a href="#tutorials">
-      Tutorials
-    </a>
-
-    <a href="#features">
-      Features
-    </a>
-
-    <a href="#assistant">
-      AI Assistant
-    </a>
-
-    <a href="#assistant" class="nav-btn">
-      Start Learning
-    </a>
-
+  <div class="profile">
+    AI
   </div>
 
-</nav>
+</header>
 
 <!-- HERO -->
 
-<section class="hero">
+<div class="hero">
 
-  <div class="hero-left">
+  <h1>Learn Skills With AI</h1>
 
-    <div class="hero-badge">
-      #1 DIY Learning Platform
+  <p>
+    Watch tutorials, ask AI questions,
+    and learn cybersecurity safely.
+  </p>
+
+  <div class="stats">
+
+    <div class="stat">
+      <h2 id="xp">0</h2>
+      <span>XP</span>
     </div>
 
-    <h1>
+    <div class="stat">
+      <h2 id="level">1</h2>
+      <span>Level</span>
+    </div>
 
-      Learn
-      <span>DIY Skills</span>
-      Like a Professional
-
-    </h1>
-
-    <p>
-
-      Build real-world technical skills through
-      premium tutorials, guided projects,
-      interactive learning, and AI-powered support.
-
-    </p>
-
-    <div class="hero-buttons">
-
-      <button class="primary-btn">
-        Start Learning
-      </button>
-
-      <button class="secondary-btn">
-        Explore Tutorials
-      </button>
-
+    <div class="stat">
+      <h2 id="watched">0</h2>
+      <span>Watched</span>
     </div>
 
   </div>
 
-  <div class="hero-right">
+</div>
 
-    <div class="dashboard">
+<!-- SEARCH -->
 
-      <div class="dashboard-top">
+<div class="search-wrap">
 
-        <div class="dashboard-title">
-          Learning Dashboard
-        </div>
+  <input
+    class="search"
+    id="search"
+    placeholder="Search tutorials..."
+    oninput="render()"
+  >
 
-        <div class="status">
-          Online
-        </div>
+</div>
 
-      </div>
+<!-- CATEGORIES -->
 
-      <div class="stats">
+<div class="categories" id="cats"></div>
 
-        <div class="stat">
+<!-- VIDEOS -->
 
-          <h2>12K+</h2>
-
-          <span>Active Students</span>
-
-        </div>
-
-        <div class="stat">
-
-          <h2>320+</h2>
-
-          <span>DIY Tutorials</span>
-
-        </div>
-
-        <div class="stat">
-
-          <h2>98%</h2>
-
-          <span>Success Rate</span>
-
-        </div>
-
-        <div class="stat">
-
-          <h2>4.9★</h2>
-
-          <span>User Rating</span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- TUTORIALS -->
-
-<section class="section" id="tutorials">
-
-  <div class="section-header">
-
-    <h2>
-      Featured Tutorials
-    </h2>
-
-    <p>
-
-      Learn modern repair, upgrade,
-      and setup techniques from detailed
-      professional tutorials.
-
-    </p>
-
-  </div>
-
-  <div class="search-container">
-
-    <input
-      class="search"
-      placeholder="Search tutorials..."
-    >
-
-  </div>
-
-  <div class="filters">
-
-    <div class="filter">
-      All
-    </div>
-
-    <div class="filter">
-      Phone Repair
-    </div>
-
-    <div class="filter">
-      Laptop Upgrade
-    </div>
-
-    <div class="filter">
-      Gaming PC
-    </div>
-
-    <div class="filter">
-      Networking
-    </div>
-
-  </div>
-
-  <div class="grid">
-
-    <!-- CARD -->
-
-    <div class="card">
-
-      <div class="card-image">
-
-        <img
-          class="thumb"
-          src="https://img.youtube.com/vi/6Maq5IyHSuc/hqdefault.jpg"
-        >
-
-        <div class="level">
-          Beginner
-        </div>
-
-      </div>
-
-      <div class="card-content">
-
-        <h3>
-          Phone Screen Repair
-        </h3>
-
-        <p>
-
-          Learn professional smartphone screen
-          replacement techniques using the correct tools.
-
-        </p>
-
-        <div class="card-footer">
-
-          <span>
-            12K Views
-          </span>
-
-          <button class="watch-btn">
-            Watch Now
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="card">
-
-      <div class="card-image">
-
-        <img
-          class="thumb"
-          src="https://img.youtube.com/vi/PXaLc9AYIcg/hqdefault.jpg"
-        >
-
-        <div class="level">
-          Advanced
-        </div>
-
-      </div>
-
-      <div class="card-content">
-
-        <h3>
-          Gaming PC Build
-        </h3>
-
-        <p>
-
-          Complete high-performance gaming PC
-          build tutorial for beginners and enthusiasts.
-
-        </p>
-
-        <div class="card-footer">
-
-          <span>
-            52K Views
-          </span>
-
-          <button class="watch-btn">
-            Watch Now
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- CARD -->
-
-    <div class="card">
-
-      <div class="card-image">
-
-        <img
-          class="thumb"
-          src="https://img.youtube.com/vi/5NckCxoxobE/hqdefault.jpg"
-        >
-
-        <div class="level">
-          Fast Track
-        </div>
-
-      </div>
-
-      <div class="card-content">
-
-        <h3>
-          SSD Installation
-        </h3>
-
-        <p>
-
-          Upgrade your laptop performance with
-          step-by-step SSD installation guidance.
-
-        </p>
-
-        <div class="card-footer">
-
-          <span>
-            24K Views
-          </span>
-
-          <button class="watch-btn">
-            Watch Now
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="section" id="features">
-
-  <div class="section-header">
-
-    <h2>
-      Why Choose DIY Academy
-    </h2>
-
-    <p>
-
-      Everything you need to learn faster,
-      improve technical skills,
-      and complete real-world projects.
-
-    </p>
-
-  </div>
-
-  <div class="features">
-
-    <div class="feature">
-
-      <div class="feature-icon">
-        🎯
-      </div>
-
-      <h3>
-        Skill Tracking
-      </h3>
-
-      <p>
-
-        Monitor your learning progress,
-        earn achievements,
-        and track completed tutorials.
-
-      </p>
-
-    </div>
-
-    <div class="feature">
-
-      <div class="feature-icon">
-        🤖
-      </div>
-
-      <h3>
-        AI Assistance
-      </h3>
-
-      <p>
-
-        Receive instant troubleshooting,
-        repair tips,
-        and technical recommendations.
-
-      </p>
-
-    </div>
-
-    <div class="feature">
-
-      <div class="feature-icon">
-        🚀
-      </div>
-
-      <h3>
-        Professional Tutorials
-      </h3>
-
-      <p>
-
-        Learn through premium-quality
-        tutorials designed by experienced creators.
-
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
+<div class="grid" id="list"></div>
 
 <!-- AI -->
 
-<section class="section" id="assistant">
+<div class="ai-box">
 
-  <div class="section-header">
+  <h2>🤖 AI Assistant</h2>
 
-    <h2>
-      AI DIY Assistant
-    </h2>
+  <textarea
+    id="q"
+    placeholder="Ask AI anything..."
+  ></textarea>
 
-    <p>
+  <button onclick="askAI()">
+    Ask AI
+  </button>
 
-      Ask technical questions and get
-      instant DIY support.
-
-    </p>
-
+  <div class="ai-output" id="out">
+    AI ready to help you.
   </div>
 
-  <div class="ai-section">
+</div>
 
-    <textarea
-      id="question"
-      placeholder="Ask about repairs, upgrades, gaming PCs, SSDs, WiFi issues..."
-    ></textarea>
+<!-- COMMUNITY -->
 
-    <button
-      class="ai-btn"
-      onclick="askAI()"
-    >
-      Ask Assistant
-    </button>
+<div class="community">
 
-    <div class="response" id="response">
+  <h2>💬 Community Feed</h2>
 
-      Your AI assistant is ready to help you.
+  <textarea
+    id="msg"
+    placeholder="Share your experience..."
+  ></textarea>
 
+  <button onclick="addPost()">
+    Post Message
+  </button>
+
+  <div id="posts"></div>
+
+</div>
+
+<!-- VIDEO MODAL -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-content">
+
+    <div class="close" onclick="closeVideo()">
+      ✕
     </div>
 
+    <iframe
+      id="video"
+      allowfullscreen
+    ></iframe>
+
   </div>
 
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-  © 2026 DIY Academy • Professional DIY Learning Platform
-
-</footer>
+</div>
 
 <script>
 
-function askAI(){
+/* DATA */
 
-  const question =
-  document
-  .getElementById("question")
-  .value
-  .toLowerCase();
+const videos = [
 
-  const response =
-  document
-  .getElementById("response");
+{
+title:"Fix Phone Screen",
+desc:"Repair cracked smartphone screens.",
+cat:"Phone",
+views:"1.2K",
+id:"6Maq5IyHSuc",
+img:"https://img.youtube.com/vi/6Maq5IyHSuc/hqdefault.jpg"
+},
 
-  let text =
-  "Try asking about laptops, gaming PCs, SSDs, networking, or phone repair.";
+{
+title:"Build Gaming PC",
+desc:"Full gaming PC build tutorial.",
+cat:"PC",
+views:"5.2K",
+id:"PXaLc9AYIcg",
+img:"https://img.youtube.com/vi/PXaLc9AYIcg/hqdefault.jpg"
+},
 
-  if(question.includes("ssd")){
+{
+title:"Install SSD",
+desc:"Upgrade laptop speed instantly.",
+cat:"Laptop",
+views:"2.4K",
+id:"5NckCxoxobE",
+img:"https://img.youtube.com/vi/5NckCxoxobE/hqdefault.jpg"
+},
 
-    text =
-    "Installing an SSD significantly improves boot speed, app loading times, and overall system responsiveness.";
+{
+title:"Phishing Awareness",
+desc:"Learn how to detect online scams safely.",
+cat:"Cybersecurity",
+views:"9.1K",
+id:"Y7zNlEMDmI4",
+img:"https://img.youtube.com/vi/Y7zNlEMDmI4/hqdefault.jpg"
+}
 
-  }
+];
 
-  else if(question.includes("wifi")){
+/* VARIABLES */
 
-    text =
-    "Place your router in an elevated open area and reduce nearby interference for better WiFi performance.";
+let current = "All";
 
-  }
+let xp = 0;
+let level = 1;
+let watched = 0;
 
-  else if(question.includes("gaming pc")){
+const categories = [
+"All",
+...new Set(videos.map(v=>v.cat))
+];
 
-    text =
-    "For a balanced gaming PC build, use at least 16GB RAM, a dedicated GPU, and an SSD for storage.";
+/* LOAD CATEGORIES */
 
-  }
+function loadCats(){
 
-  else if(question.includes("phone")){
+document.getElementById("cats").innerHTML =
+categories.map(c=>`
 
-    text =
-    "Before repairing a smartphone, disconnect the battery and organize screws carefully to avoid damage.";
+<div
+class="cat ${current===c?'active':''}"
+onclick="setCat('${c}')"
+>
+${c}
+</div>
 
-  }
-
-  response.innerHTML = text;
+`).join('');
 
 }
+
+function setCat(c){
+
+current = c;
+
+loadCats();
+
+render();
+
+}
+
+/* RENDER */
+
+function render(){
+
+const q =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const filtered =
+videos.filter(v=>
+
+(current==="All"||v.cat===current)
+
+&&
+
+v.title.toLowerCase().includes(q)
+
+);
+
+document.getElementById("list").innerHTML =
+
+filtered.map(v=>`
+
+<div class="card" onclick="play('${v.id}')">
+
+<img class="thumb" src="${v.img}">
+
+<div class="card-body">
+
+<div class="card-title">
+${v.title}
+</div>
+
+<div class="card-desc">
+${v.desc}
+</div>
+
+<div class="meta">
+<span>${v.cat}</span>
+<span>${v.views} views</span>
+</div>
+
+</div>
+
+</div>
+
+`).join('');
+
+}
+
+/* PLAY VIDEO */
+
+function play(id){
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("video").src =
+"https://www.youtube.com/embed/"+id+"?autoplay=1";
+
+xp += 10;
+watched++;
+
+if(xp >= level * 50){
+
+level++;
+
+alert("🎉 Level Up!");
+
+}
+
+updateStats();
+
+}
+
+/* CLOSE */
+
+function closeVideo(){
+
+document.getElementById("modal").style.display="none";
+
+document.getElementById("video").src="";
+
+}
+
+/* STATS */
+
+function updateStats(){
+
+document.getElementById("xp").innerText = xp;
+
+document.getElementById("level").innerText = level;
+
+document.getElementById("watched").innerText = watched;
+
+}
+
+/* AI */
+
+function askAI(){
+
+let q =
+document.getElementById("q")
+.value
+.toLowerCase();
+
+let out =
+document.getElementById("out");
+
+if(!q){
+
+out.innerText =
+"Please ask a question.";
+
+return;
+
+}
+
+const responses = [
+
+"Try restarting the device and checking all cables.",
+
+"Breaking the issue into smaller steps helps troubleshooting.",
+
+"Updating drivers and software fixes many problems.",
+
+"Check internet connection and restart the router.",
+
+"Using SSD storage improves speed dramatically."
+
+];
+
+if(q.includes("wifi")){
+
+out.innerText =
+"Move the router to open space and restart it.";
+
+}
+
+else if(q.includes("pc")){
+
+out.innerText =
+"Use SSD + 16GB RAM + proper cooling.";
+
+}
+
+else if(q.includes("phone")){
+
+out.innerText =
+"Restart device and inspect screen or battery health.";
+
+}
+
+else if(q.includes("phishing")||q.includes("scam")){
+
+out.innerText =
+"Never click suspicious links and verify sender emails carefully.";
+
+}
+
+else{
+
+out.innerText =
+responses[Math.floor(Math.random()*responses.length)];
+
+}
+
+}
+
+/* COMMUNITY */
+
+let posts = [];
+
+function addPost(){
+
+let msg =
+document.getElementById("msg").value;
+
+if(!msg)return;
+
+posts.unshift(msg);
+
+document.getElementById("msg").value="";
+
+document.getElementById("posts").innerHTML =
+
+posts.map(p=>`
+
+<div class="post">
+${p}
+</div>
+
+`).join('');
+
+}
+
+/* INIT */
+
+loadCats();
+
+render();
+
+updateStats();
 
 </script>
 
