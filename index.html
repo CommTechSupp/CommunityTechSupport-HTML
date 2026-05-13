@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,312 +8,407 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+<meta name="theme-color" content="#2563eb">
+
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-  font-family:'Inter',sans-serif;
-  background:#f4f8ff;
-  color:#0f172a;
-  overflow-x:hidden;
+font-family:'Inter',sans-serif;
+background:#f4f8ff;
+color:#0f172a;
+overflow-x:hidden;
+padding-bottom:90px;
+}
+
+/* SPLASH */
+
+#splash{
+position:fixed;
+inset:0;
+background:#2563eb;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:32px;
+font-weight:800;
+z-index:5000;
+animation:fadeOut 2s forwards;
+}
+
+@keyframes fadeOut{
+0%{opacity:1;}
+80%{opacity:1;}
+100%{
+opacity:0;
+visibility:hidden;
+}
 }
 
 /* HEADER */
 
 header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:white;
-  border-bottom:1px solid #dbeafe;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+background:white;
+border-bottom:1px solid #dbeafe;
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:800;
-  color:#2563eb;
+font-size:22px;
+font-weight:800;
+color:#2563eb;
 }
 
 .profile{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#2563eb;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
+width:42px;
+height:42px;
+border-radius:50%;
+background:#2563eb;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
 }
 
 /* HERO */
 
 .hero{
-  padding:40px 20px;
-  background:linear-gradient(135deg,#1d4ed8,#2563eb,#60a5fa);
-  color:white;
+padding:40px 20px;
+background:linear-gradient(135deg,#1d4ed8,#2563eb,#60a5fa);
+color:white;
 }
 
 .hero h1{
-  font-size:38px;
-  margin-bottom:10px;
+font-size:38px;
+margin-bottom:10px;
 }
 
 .hero p{
-  opacity:0.9;
-  max-width:600px;
+opacity:0.9;
+max-width:600px;
+}
+
+/* PROGRESS */
+
+.progress-wrap{
+width:100%;
+height:12px;
+background:rgba(255,255,255,0.2);
+border-radius:999px;
+margin-top:20px;
+overflow:hidden;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:white;
+transition:0.3s;
 }
 
 /* STATS */
 
 .stats{
-  display:flex;
-  gap:15px;
-  margin-top:25px;
-  flex-wrap:wrap;
+display:flex;
+gap:15px;
+margin-top:25px;
+flex-wrap:wrap;
 }
 
 .stat{
-  background:rgba(255,255,255,0.15);
-  padding:15px 20px;
-  border-radius:16px;
-  min-width:120px;
-  backdrop-filter:blur(5px);
+background:rgba(255,255,255,0.15);
+padding:15px 20px;
+border-radius:16px;
+min-width:120px;
+backdrop-filter:blur(5px);
 }
 
 .stat h2{
-  font-size:28px;
+font-size:28px;
 }
 
 /* SEARCH */
 
 .search-wrap{
-  padding:20px;
+padding:20px;
 }
 
 .search{
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:16px;
-  background:white;
-  font-size:15px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.06);
-  outline:none;
+width:100%;
+padding:16px;
+border:none;
+border-radius:16px;
+background:white;
+font-size:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.06);
+outline:none;
 }
 
 /* CATEGORY */
 
 .categories{
-  display:flex;
-  gap:10px;
-  padding:0 20px;
-  overflow:auto;
+display:flex;
+gap:10px;
+padding:0 20px;
+overflow:auto;
 }
 
 .cat{
-  white-space:nowrap;
-  background:white;
-  padding:10px 18px;
-  border-radius:999px;
-  cursor:pointer;
-  font-weight:600;
-  border:1px solid #dbeafe;
-  transition:0.3s;
+white-space:nowrap;
+background:white;
+padding:10px 18px;
+border-radius:999px;
+cursor:pointer;
+font-weight:600;
+border:1px solid #dbeafe;
+transition:0.3s;
 }
 
 .cat.active{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white;
 }
 
 /* GRID */
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
-  padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+padding:20px;
 }
 
 /* CARD */
 
 .card{
-  background:white;
-  border-radius:22px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+background:white;
+border-radius:22px;
+overflow:hidden;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 .card:hover{
-  transform:translateY(-6px);
+transform:translateY(-6px);
+}
+
+.card:active{
+transform:scale(0.98);
 }
 
 .thumb{
-  width:100%;
-  height:190px;
-  object-fit:cover;
+width:100%;
+height:190px;
+object-fit:cover;
 }
 
 .card-body{
-  padding:16px;
+padding:16px;
 }
 
 .card-title{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:6px;
+font-size:18px;
+font-weight:700;
+margin-bottom:6px;
 }
 
 .card-desc{
-  color:#64748b;
-  font-size:14px;
-  margin-bottom:12px;
+color:#64748b;
+font-size:14px;
+margin-bottom:12px;
 }
 
 .meta{
-  display:flex;
-  justify-content:space-between;
-  font-size:13px;
-  color:#64748b;
+display:flex;
+justify-content:space-between;
+font-size:13px;
+color:#64748b;
 }
 
 /* AI */
 
 .ai-box{
-  margin:20px;
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+margin:20px;
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
 }
 
 .ai-box h2{
-  margin-bottom:12px;
+margin-bottom:12px;
 }
 
 textarea{
-  width:100%;
-  border:none;
-  background:#f1f5f9;
-  border-radius:14px;
-  padding:14px;
-  resize:none;
-  min-height:100px;
-  margin-top:10px;
-  outline:none;
+width:100%;
+border:none;
+background:#f1f5f9;
+border-radius:14px;
+padding:14px;
+resize:none;
+min-height:100px;
+margin-top:10px;
+outline:none;
 }
 
 button{
-  width:100%;
-  border:none;
-  background:#2563eb;
-  color:white;
-  padding:14px;
-  border-radius:14px;
-  margin-top:12px;
-  cursor:pointer;
-  font-weight:700;
-  transition:0.3s;
+width:100%;
+border:none;
+background:#2563eb;
+color:white;
+padding:14px;
+border-radius:14px;
+margin-top:12px;
+cursor:pointer;
+font-weight:700;
+transition:0.3s;
 }
 
 button:hover{
-  background:#1d4ed8;
+background:#1d4ed8;
 }
 
 .ai-output{
-  margin-top:15px;
-  background:#eff6ff;
-  padding:15px;
-  border-radius:14px;
-  min-height:80px;
-  line-height:1.6;
+margin-top:15px;
+background:#eff6ff;
+padding:15px;
+border-radius:14px;
+min-height:80px;
+line-height:1.6;
 }
 
 /* COMMUNITY */
 
 .community{
-  margin:20px;
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+margin:20px;
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
 }
 
 .post{
-  background:#eff6ff;
-  padding:12px;
-  border-radius:12px;
-  margin-top:12px;
+background:#eff6ff;
+padding:12px;
+border-radius:12px;
+margin-top:12px;
 }
 
 /* MODAL */
 
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:2000;
-  padding:20px;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.75);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:2000;
+padding:20px;
 }
 
 .modal-content{
-  width:100%;
-  max-width:950px;
-  background:white;
-  border-radius:24px;
-  overflow:hidden;
-  position:relative;
+width:100%;
+max-width:950px;
+background:white;
+border-radius:24px;
+overflow:hidden;
+position:relative;
 }
 
 iframe{
-  width:100%;
-  height:520px;
-  border:none;
+width:100%;
+height:520px;
+border:none;
 }
 
 .close{
-  position:absolute;
-  top:15px;
-  right:18px;
-  color:white;
-  background:red;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  font-weight:bold;
-  z-index:100;
+position:absolute;
+top:15px;
+right:18px;
+color:white;
+background:red;
+width:36px;
+height:36px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-weight:bold;
+z-index:100;
+}
+
+/* TOAST */
+
+#toast{
+position:fixed;
+bottom:90px;
+left:50%;
+transform:translateX(-50%);
+background:#2563eb;
+color:white;
+padding:14px 22px;
+border-radius:999px;
+opacity:0;
+transition:0.4s;
+z-index:4000;
+}
+
+#toast.show{
+opacity:1;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+height:70px;
+background:white;
+display:flex;
+justify-content:space-around;
+align-items:center;
+box-shadow:0 -5px 20px rgba(0,0,0,0.1);
+z-index:3000;
+}
+
+.bottom-nav div{
+font-size:26px;
+cursor:pointer;
 }
 
 /* MOBILE */
 
 @media(max-width:700px){
 
-  .hero h1{
-    font-size:28px;
-  }
+.hero h1{
+font-size:28px;
+}
 
-  iframe{
-    height:260px;
-  }
+iframe{
+height:260px;
+}
 
 }
 
@@ -323,133 +417,145 @@ iframe{
 
 <body>
 
+<div id="splash">
+DIY AI Academy
+</div>
+
 <header>
 
-  <div class="logo">
-    DIY AI Academy
-  </div>
+<div class="logo">
+DIY AI Academy
+</div>
 
-  <div class="profile">
-    AI
-  </div>
+<div class="profile">
+AI
+</div>
 
 </header>
 
-<!-- HERO -->
-
 <div class="hero">
 
-  <h1>Learn Skills With AI</h1>
+<h1>Learn Skills With AI</h1>
 
-  <p>
-    Watch tutorials, ask AI questions,
-    and learn cybersecurity safely.
-  </p>
+<p>
+Watch tutorials, ask AI questions,
+and learn cybersecurity safely.
+</p>
 
-  <div class="stats">
+<div class="progress-wrap">
+<div class="progress" id="progress"></div>
+</div>
 
-    <div class="stat">
-      <h2 id="xp">0</h2>
-      <span>XP</span>
-    </div>
+<div class="stats">
 
-    <div class="stat">
-      <h2 id="level">1</h2>
-      <span>Level</span>
-    </div>
+<div class="stat">
+<h2 id="xp">0</h2>
+<span>XP</span>
+</div>
 
-    <div class="stat">
-      <h2 id="watched">0</h2>
-      <span>Watched</span>
-    </div>
+<div class="stat">
+<h2 id="level">1</h2>
+<span>Level</span>
+</div>
 
-  </div>
+<div class="stat">
+<h2 id="watched">0</h2>
+<span>Watched</span>
+</div>
 
 </div>
 
-<!-- SEARCH -->
+</div>
 
 <div class="search-wrap">
 
-  <input
-    class="search"
-    id="search"
-    placeholder="Search tutorials..."
-    oninput="render()"
-  >
+<input
+class="search"
+id="search"
+placeholder="Search tutorials..."
+oninput="render()"
+>
 
 </div>
-
-<!-- CATEGORIES -->
 
 <div class="categories" id="cats"></div>
 
-<!-- VIDEOS -->
-
 <div class="grid" id="list"></div>
-
-<!-- AI -->
 
 <div class="ai-box">
 
-  <h2>🤖 AI Assistant</h2>
+<h2>🤖 AI Assistant</h2>
 
-  <textarea
-    id="q"
-    placeholder="Ask AI anything..."
-  ></textarea>
+<textarea
+id="q"
+placeholder="Ask AI anything..."
+></textarea>
 
-  <button onclick="askAI()">
-    Ask AI
-  </button>
+<button onclick="askAI()">
+Ask AI
+</button>
 
-  <div class="ai-output" id="out">
-    AI ready to help you.
-  </div>
-
+<div class="ai-output" id="out">
+AI ready to help you.
 </div>
 
-<!-- COMMUNITY -->
+</div>
 
 <div class="community">
 
-  <h2>💬 Community Feed</h2>
+<h2>💬 Community Feed</h2>
 
-  <textarea
-    id="msg"
-    placeholder="Share your experience..."
-  ></textarea>
+<textarea
+id="msg"
+placeholder="Share your experience..."
+></textarea>
 
-  <button onclick="addPost()">
-    Post Message
-  </button>
+<button onclick="addPost()">
+Post Message
+</button>
 
-  <div id="posts"></div>
+<div id="posts"></div>
 
 </div>
 
-<!-- VIDEO MODAL -->
-
 <div class="modal" id="modal">
 
-  <div class="modal-content">
+<div class="modal-content">
 
-    <div class="close" onclick="closeVideo()">
-      ✕
-    </div>
+<div class="close" onclick="closeVideo()">
+✕
+</div>
 
-    <iframe
-      id="video"
-      allowfullscreen
-    ></iframe>
+<iframe
+id="video"
+allowfullscreen
+></iframe>
 
-  </div>
+</div>
+
+</div>
+
+<div id="toast">
++10 XP Earned
+</div>
+
+<div class="bottom-nav">
+
+<div onclick="window.scrollTo(0,0)">
+🏠
+</div>
+
+<div onclick="document.getElementById('q').focus()">
+🤖
+</div>
+
+<div onclick="document.getElementById('posts').scrollIntoView()">
+💬
+</div>
 
 </div>
 
 <script>
-
-/* DATA */
 
 const videos = [
 
@@ -464,7 +570,7 @@ img:"https://img.youtube.com/vi/6Maq5IyHSuc/hqdefault.jpg"
 
 {
 title:"Build Gaming PC",
-desc:"Full gaming PC build tutorial.",
+desc:"Complete beginner gaming PC build.",
 cat:"PC",
 views:"5.2K",
 id:"PXaLc9AYIcg",
@@ -473,7 +579,7 @@ img:"https://img.youtube.com/vi/PXaLc9AYIcg/hqdefault.jpg"
 
 {
 title:"Install SSD",
-desc:"Upgrade laptop speed instantly.",
+desc:"Upgrade your laptop with SSD storage.",
 cat:"Laptop",
 views:"2.4K",
 id:"5NckCxoxobE",
@@ -482,29 +588,87 @@ img:"https://img.youtube.com/vi/5NckCxoxobE/hqdefault.jpg"
 
 {
 title:"Phishing Awareness",
-desc:"Learn how to detect online scams safely.",
+desc:"Learn how phishing scams work.",
 cat:"Cybersecurity",
 views:"9.1K",
 id:"Y7zNlEMDmI4",
 img:"https://img.youtube.com/vi/Y7zNlEMDmI4/hqdefault.jpg"
+},
+
+{
+title:"Cybersecurity Basics",
+desc:"Introduction to cybersecurity safety.",
+cat:"Cybersecurity",
+views:"11K",
+id:"inWWhr5tnEA",
+img:"https://img.youtube.com/vi/inWWhr5tnEA/hqdefault.jpg"
+},
+
+{
+title:"Build Budget PC",
+desc:"Affordable PC build tutorial.",
+cat:"PC",
+views:"5.9K",
+id:"BL4DCEp7blY",
+img:"https://img.youtube.com/vi/BL4DCEp7blY/hqdefault.jpg"
+},
+
+{
+title:"Laptop Cleaning Guide",
+desc:"Safely clean dust from your laptop.",
+cat:"Laptop",
+views:"3.1K",
+id:"wtoHjGWc2s8",
+img:"https://img.youtube.com/vi/wtoHjGWc2s8/hqdefault.jpg"
+},
+
+{
+title:"Online Safety Tips",
+desc:"Stay safe while browsing online.",
+cat:"Cybersecurity",
+views:"7.5K",
+id:"z5nc9MDbvkw",
+img:"https://img.youtube.com/vi/z5nc9MDbvkw/hqdefault.jpg"
+},
+
+{
+title:"Replace Phone Battery",
+desc:"Battery replacement tutorial.",
+cat:"Phone",
+views:"2.2K",
+id:"V9PVRfjEBTI",
+img:"https://img.youtube.com/vi/V9PVRfjEBTI/hqdefault.jpg"
+},
+
+{
+title:"Windows Installation",
+desc:"Install Windows step by step.",
+cat:"PC",
+views:"7.8K",
+id:"nbGkPYtXtmA",
+img:"https://img.youtube.com/vi/nbGkPYtXtmA/hqdefault.jpg"
 }
 
 ];
 
-/* VARIABLES */
+while(videos.length < 20){
+
+videos.push(...videos.slice(0,10));
+
+}
+
+videos.length = 20;
 
 let current = "All";
 
-let xp = 0;
-let level = 1;
-let watched = 0;
+let xp = Number(localStorage.getItem("xp")) || 0;
+let level = Number(localStorage.getItem("level")) || 1;
+let watched = Number(localStorage.getItem("watched")) || 0;
 
 const categories = [
 "All",
 ...new Set(videos.map(v=>v.cat))
 ];
-
-/* LOAD CATEGORIES */
 
 function loadCats(){
 
@@ -531,8 +695,6 @@ loadCats();
 render();
 
 }
-
-/* RENDER */
 
 function render(){
 
@@ -583,8 +745,6 @@ ${v.desc}
 
 }
 
-/* PLAY VIDEO */
-
 function play(id){
 
 document.getElementById("modal").style.display="flex";
@@ -605,9 +765,18 @@ alert("🎉 Level Up!");
 
 updateStats();
 
-}
+const toast =
+document.getElementById("toast");
 
-/* CLOSE */
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2000);
+
+}
 
 function closeVideo(){
 
@@ -617,8 +786,6 @@ document.getElementById("video").src="";
 
 }
 
-/* STATS */
-
 function updateStats(){
 
 document.getElementById("xp").innerText = xp;
@@ -627,9 +794,14 @@ document.getElementById("level").innerText = level;
 
 document.getElementById("watched").innerText = watched;
 
-}
+document.getElementById("progress").style.width =
+((xp % 50)/50)*100 + "%";
 
-/* AI */
+localStorage.setItem("xp", xp);
+localStorage.setItem("level", level);
+localStorage.setItem("watched", watched);
+
+}
 
 function askAI(){
 
@@ -650,20 +822,6 @@ return;
 
 }
 
-const responses = [
-
-"Try restarting the device and checking all cables.",
-
-"Breaking the issue into smaller steps helps troubleshooting.",
-
-"Updating drivers and software fixes many problems.",
-
-"Check internet connection and restart the router.",
-
-"Using SSD storage improves speed dramatically."
-
-];
-
 if(q.includes("wifi")){
 
 out.innerText =
@@ -681,29 +839,38 @@ out.innerText =
 else if(q.includes("phone")){
 
 out.innerText =
-"Restart device and inspect screen or battery health.";
+"Restart device and inspect battery health.";
 
 }
 
 else if(q.includes("phishing")||q.includes("scam")){
 
 out.innerText =
-"Never click suspicious links and verify sender emails carefully.";
+"Never click suspicious links and always verify sender emails carefully.";
 
 }
 
 else{
 
 out.innerText =
-responses[Math.floor(Math.random()*responses.length)];
+"Breaking problems into smaller steps helps troubleshooting.";
 
 }
 
 }
-
-/* COMMUNITY */
 
 let posts = [];
+
+function escapeHTML(str){
+
+return str
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
 
 function addPost(){
 
@@ -712,7 +879,7 @@ document.getElementById("msg").value;
 
 if(!msg)return;
 
-posts.unshift(msg);
+posts.unshift(escapeHTML(msg));
 
 document.getElementById("msg").value="";
 
@@ -728,8 +895,6 @@ ${p}
 
 }
 
-/* INIT */
-
 loadCats();
 
 render();
@@ -740,4 +905,3 @@ updateStats();
 
 </body>
 </html>
-```
